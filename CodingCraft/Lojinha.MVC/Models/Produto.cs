@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Lojinha.MVC.Models
 {
     [Table("Produtos")]
-    public class Produto
+    public class Produto : Entidade
     {
         [Key]
         public int ProdutoId { get; set; }

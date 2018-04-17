@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lojinha.MVC.Models
 {
     [Table("Lojas")]
-    public class Loja
+    public class Loja : Entidade
     {
         [Key]
         public int LojaId { get; set; }

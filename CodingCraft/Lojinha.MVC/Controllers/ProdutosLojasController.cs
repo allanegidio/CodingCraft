@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Lojinha.MVC.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using Lojinha.MVC.Models;
 
 namespace Lojinha.MVC.Controllers
 {
@@ -18,7 +13,9 @@ namespace Lojinha.MVC.Controllers
         // GET: ProdutosLojas
         public async Task<ActionResult> Index()
         {
-            var produtosLojas = db.ProdutosLojas.Include(p => p.Loja).Include(p => p.Produto);
+            var produtosLojas = db.ProdutosLojas
+                                .Include(p => p.Loja)
+                                .Include(p => p.Produto);
             return View(await produtosLojas.ToListAsync());
         }
 
