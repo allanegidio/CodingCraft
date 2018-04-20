@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
-using System.Transactions;
 using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
@@ -49,15 +48,9 @@ namespace Lojinha.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                using(var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    db.Produtos.Add(produto);
-                    await db.SaveChangesAsync();
-
-                    scope.Complete();
-
-                    return RedirectToAction("Index");
-                }
+                db.Produtos.Add(produto);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
 
             ViewBag.CategoriaId = new SelectList(db.Categorias, "CategoriaId", "Nome", produto.CategoriaId);

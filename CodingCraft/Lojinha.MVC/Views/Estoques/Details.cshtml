@@ -1,4 +1,4 @@
-﻿@model Lojinha.MVC.Models.ProdutoLoja
+﻿@model Lojinha.MVC.Models.Estoque
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>ProdutoLoja</h4>
+    <h4>Estoque</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,16 +27,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Estoque)
+            @Html.DisplayNameFor(model => model.Quantidade)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Estoque)
+            @Html.DisplayFor(model => model.Quantidade)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProdutoLojaId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EstoqueId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

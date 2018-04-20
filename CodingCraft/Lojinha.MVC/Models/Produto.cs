@@ -22,7 +22,7 @@ namespace Lojinha.MVC.Models
 
         public virtual Categoria Categoria { get; set; }
 
-        public virtual ICollection<ProdutoLoja> ProdutoLojas { get; set; }
+        public virtual ICollection<Estoque> Estoques { get; set; }
 
     }
 }

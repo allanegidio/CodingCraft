@@ -1,4 +1,4 @@
-﻿@model Lojinha.MVC.Models.ProdutoLoja
+﻿@model Lojinha.MVC.Models.Estoque
 
 @{
     ViewBag.Title = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>ProdutoLoja</h4>
+    <h4>Estoque</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,13 +28,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Estoque)
+            @Html.DisplayNameFor(model => model.Quantidade)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Estoque)
+            @Html.DisplayFor(model => model.Quantidade)
         </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {

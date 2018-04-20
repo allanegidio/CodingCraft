@@ -6,35 +6,33 @@ using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
 {
-    public class ProdutosLojasController : Controller
+    public class EstoquesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ProdutosLojas
+        // GET: Estoques
         public async Task<ActionResult> Index()
         {
-            var produtosLojas = db.ProdutosLojas
-                                .Include(p => p.Loja)
-                                .Include(p => p.Produto);
-            return View(await produtosLojas.ToListAsync());
+            var estoques = db.Estoques.Include(e => e.Loja).Include(e => e.Produto);
+            return View(await estoques.ToListAsync());
         }
 
-        // GET: ProdutosLojas/Details/5
+        // GET: Estoques/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
-            if (produtoLoja == null)
+            Estoque estoque = await db.Estoques.FindAsync(id);
+            if (estoque == null)
             {
                 return HttpNotFound();
             }
-            return View(produtoLoja);
+            return View(estoque);
         }
 
-        // GET: ProdutosLojas/Create
+        // GET: Estoques/Create
         public ActionResult Create()
         {
             ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome");
@@ -42,82 +40,82 @@ namespace Lojinha.MVC.Controllers
             return View();
         }
 
-        // POST: ProdutosLojas/Create
+        // POST: Estoques/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProdutoLojaId,ProdutoId,LojaId,Estoque")] ProdutoLoja produtoLoja)
+        public async Task<ActionResult> Create([Bind(Include = "EstoqueId,ProdutoId,LojaId,Quantidade")] Estoque estoque)
         {
             if (ModelState.IsValid)
             {
-                db.ProdutosLojas.Add(produtoLoja);
+                db.Estoques.Add(estoque);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
-            return View(produtoLoja);
+            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", estoque.LojaId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", estoque.ProdutoId);
+            return View(estoque);
         }
 
-        // GET: ProdutosLojas/Edit/5
+        // GET: Estoques/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
-            if (produtoLoja == null)
+            Estoque estoque = await db.Estoques.FindAsync(id);
+            if (estoque == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
-            return View(produtoLoja);
+            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", estoque.LojaId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", estoque.ProdutoId);
+            return View(estoque);
         }
 
-        // POST: ProdutosLojas/Edit/5
+        // POST: Estoques/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProdutoLojaId,ProdutoId,LojaId,Estoque")] ProdutoLoja produtoLoja)
+        public async Task<ActionResult> Edit([Bind(Include = "EstoqueId,ProdutoId,LojaId,Quantidade")] Estoque estoque)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(produtoLoja).State = EntityState.Modified;
+                db.Entry(estoque).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
-            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
-            return View(produtoLoja);
+            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", estoque.LojaId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", estoque.ProdutoId);
+            return View(estoque);
         }
 
-        // GET: ProdutosLojas/Delete/5
+        // GET: Estoques/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
-            if (produtoLoja == null)
+            Estoque estoque = await db.Estoques.FindAsync(id);
+            if (estoque == null)
             {
                 return HttpNotFound();
             }
-            return View(produtoLoja);
+            return View(estoque);
         }
 
-        // POST: ProdutosLojas/Delete/5
+        // POST: Estoques/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
-            db.ProdutosLojas.Remove(produtoLoja);
+            Estoque estoque = await db.Estoques.FindAsync(id);
+            db.Estoques.Remove(estoque);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
