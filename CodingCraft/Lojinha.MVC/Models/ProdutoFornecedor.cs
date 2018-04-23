@@ -11,9 +11,5 @@ namespace Lojinha.MVC.Models
         [Required]
         [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
-
-        public int CompraFornecedorProdutoId { get; set; }
-
-        public CompraFornecedorProduto CompraFornecedorProduto { get; set; }
     }
 }

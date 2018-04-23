@@ -17,6 +17,6 @@ namespace Lojinha.MVC.Models
         public decimal Prejuizo { get; private set; }
         public decimal Lucro { get; private set; }
 
-        public virtual ICollection<CompraFornecedorProduto> Produtos { get; set; }
+        public virtual ICollection<CompraFornecedorProduto> CompraFornecedorProdutos { get; set; }
     }
 }
