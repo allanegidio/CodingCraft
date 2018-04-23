@@ -20,19 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Estoque)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataModificacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioModificacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataCriacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioCriacao)
-        </th>
-        <th></th>
+        <th>Ações</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -45,18 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estoque)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataModificacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UsuarioModificacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataCriacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UsuarioCriacao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProdutoLojaId }) |

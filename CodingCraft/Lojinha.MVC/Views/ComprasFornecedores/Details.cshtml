@@ -1,0 +1,58 @@
+﻿@model Lojinha.MVC.Models.CompraFornecedor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompraFornecedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lucro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lucro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prejuizo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prejuizo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCompra)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompraFornecedorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

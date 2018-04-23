@@ -27,6 +27,8 @@ namespace Lojinha.MVC.Models
         public DbSet<Fornecedor> Fornecedores { get; set; }
         public DbSet<ProdutoFornecedor> ProdutosFornecedores { get; set; }
         public DbSet<ProdutoLoja> ProdutosLojas { get; set; }
+        public DbSet<CompraFornecedor> ComprasFornecedores { get; set; }
+        public DbSet<CompraFornecedorProduto> ComprasFornecedoresProdutos { get; set; }
 
         public override int SaveChanges()
         {
