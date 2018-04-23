@@ -3,20 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lojinha.MVC.Models
 {
-    [Table("Estoque")]
-    public class Estoque : Entidade
+    [Table("ProdutosLojas")]
+    public class ProdutoLoja : Entidade
     {
         [Key]
-        public int EstoqueId { get; set; }
+        public int ProdutoLojaId { get; set; }
 
-        [Index("UIX_Estoque_ProdutoId_LojaId", IsUnique = true, Order = 1)]
+        [Index("UIX_ProdutosLojas_ProdutoId_LojaId", IsUnique = true, Order = 1)]
         public int ProdutoId { get; set; }
 
-        [Index("UIX_Estoque_ProdutoId_LojaId", IsUnique = true, Order = 2)]
+        [Index("UIX_ProdutosLojas_ProdutoId_LojaId", IsUnique = true, Order = 2)]
         public int LojaId { get; set; }
 
         [Required]
-        public int Quantidade { get; set; }
+        public int Estoque { get; set; }
 
         public virtual Produto Produto { get; set; }
         public virtual Loja Loja { get; set; }

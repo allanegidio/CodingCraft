@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lojinha.MVC.Models
 {
-    [Table("Lojas")]
-    public class Loja : Entidade
+    [Table("Fornecedores")]
+    public class Fornecedor : Entidade
     {
         [Key]
-        public int LojaId { get; set; }
+        public int FornecedorId { get; set; }
 
         [Required]
         [StringLength(200)]
-        [Index("IX_Loja_Nome", IsUnique = true)]
+        [Index("IX_Fornecedor_Nome", IsUnique = true)]
         public string Nome { get; set; }
 
-        public virtual ICollection<ProdutoLoja> ProdutoLojas { get; set; }
+        public virtual ICollection<ProdutoFornecedor> ProdutoFornecedores { get; set; }
     }
 }
