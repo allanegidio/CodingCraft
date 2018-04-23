@@ -25,7 +25,6 @@ namespace Lojinha.MVC.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Estoque> Estoques { get; set; }
         public DbSet<Loja> Lojas { get; set; }
-        public DbSet<Compra> Compras { get; set; }
 
         public override int SaveChanges()
         {

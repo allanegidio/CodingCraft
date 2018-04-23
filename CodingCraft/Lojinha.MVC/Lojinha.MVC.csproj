@@ -201,7 +201,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Compra.cs" />
+    <Compile Include="Models\CompraFornecedor.cs" />
+    <Compile Include="Models\CompraFornecedorProduto.cs" />
+    <Compile Include="Models\ProdutoCliente.cs" />
+    <Compile Include="Models\ProdutoFornecedor.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
