@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Lojinha.MVC.Models
 {
@@ -19,17 +20,9 @@ namespace Lojinha.MVC.Models
 
         public DateTime Data { get; set; }
 
-        public decimal TotalCompra { get; set; }
+        public decimal TotalCompra => CompraFornecedorProdutos.Sum(produto => produto.Total);
 
         public virtual ICollection<CompraFornecedorProduto> CompraFornecedorProdutos { get; set; }
-
-        public void CalcularTotalCompra()
-        {
-            foreach(var produto in CompraFornecedorProdutos)
-            {
-                TotalCompra += produto.Total;
-            }
-        }
 
     }
 }

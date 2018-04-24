@@ -192,7 +192,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\ComprasFornecedoresController.cs" />
+    <Compile Include="Controllers\ComprasFornecedoresProdutosController.cs" />
     <Compile Include="Controllers\FornecedoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojasController.cs" />
@@ -319,11 +319,11 @@
     <Content Include="Views\ProdutosFornecedores\Details.cshtml" />
     <Content Include="Views\ProdutosFornecedores\Edit.cshtml" />
     <Content Include="Views\ProdutosFornecedores\Index.cshtml" />
-    <Content Include="Views\ComprasFornecedores\Create.cshtml" />
-    <Content Include="Views\ComprasFornecedores\Delete.cshtml" />
-    <Content Include="Views\ComprasFornecedores\Details.cshtml" />
-    <Content Include="Views\ComprasFornecedores\Edit.cshtml" />
-    <Content Include="Views\ComprasFornecedores\Index.cshtml" />
+    <Content Include="Views\ComprasFornecedoresProdutos\Create.cshtml" />
+    <Content Include="Views\ComprasFornecedoresProdutos\Delete.cshtml" />
+    <Content Include="Views\ComprasFornecedoresProdutos\Details.cshtml" />
+    <Content Include="Views\ComprasFornecedoresProdutos\Edit.cshtml" />
+    <Content Include="Views\ComprasFornecedoresProdutos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

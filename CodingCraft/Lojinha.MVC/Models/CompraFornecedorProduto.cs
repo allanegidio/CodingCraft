@@ -12,7 +12,7 @@ namespace Lojinha.MVC.Models
         [Required]
         public int Quantidade { get; set; }
 
-        public decimal Total { get; set; }
+        public decimal Total => ProdutoFornecedor.Produto.Preco * Quantidade;
 
         public int ProdutoFornecedorId { get; set; }
 
