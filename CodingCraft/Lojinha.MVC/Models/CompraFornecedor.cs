@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace Lojinha.MVC.Models
 {
@@ -12,15 +11,14 @@ namespace Lojinha.MVC.Models
         [Key]
         public int CompraFornecedorId { get; set; }
 
-        public decimal Lastro { get; set; }
+        public int FornecedorId { get; set; }
 
-        public decimal Lucro { get; set; }
+        public decimal LastroTotal { get; set; }
 
-        public decimal Prejuizo { get; set; }
-
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
-        public decimal TotalCompra => CompraFornecedorProdutos.Sum(produto => produto.Total);
+        public virtual Fornecedor Fornecedor { get; set; }
 
         public virtual ICollection<CompraFornecedorProduto> CompraFornecedorProdutos { get; set; }
 

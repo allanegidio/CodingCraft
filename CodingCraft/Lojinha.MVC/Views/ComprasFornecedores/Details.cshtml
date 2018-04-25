@@ -1,0 +1,68 @@
+﻿@model Lojinha.MVC.Models.CompraFornecedor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompraFornecedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastroTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastroTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataModificacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataModificacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioModificacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioModificacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCriacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCriacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCriacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCriacao)
+        </dd>
+
+    </dl>
+</div>
+
+@Html.Partial("_ListaProdutos", Model.CompraFornecedorProdutos)
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompraFornecedorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

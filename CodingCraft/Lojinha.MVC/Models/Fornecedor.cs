@@ -16,5 +16,7 @@ namespace Lojinha.MVC.Models
         public string Nome { get; set; }
 
         public virtual ICollection<ProdutoFornecedor> ProdutoFornecedores { get; set; }
+
+        public virtual ICollection<CompraFornecedor> FornecedorCompras { get; set; }
     }
 }

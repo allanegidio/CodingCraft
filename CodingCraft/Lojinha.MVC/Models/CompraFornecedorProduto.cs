@@ -9,14 +9,16 @@ namespace Lojinha.MVC.Models
         [Key]
         public int CompraFornecedorProdutoId { get; set; }
 
+        public int? ProdutoFornecedorId { get; set; }
+
+        public int CompraFornecedorId { get; set; }
+
         [Required]
         public int Quantidade { get; set; }
 
-        public decimal Total => ProdutoFornecedor.Produto.Preco * Quantidade;
-
-        public int ProdutoFornecedorId { get; set; }
-
         public virtual ProdutoFornecedor ProdutoFornecedor { get; set; }
+
+        public virtual CompraFornecedor CompraFornecedor { get; set; }
 
     }
 }
