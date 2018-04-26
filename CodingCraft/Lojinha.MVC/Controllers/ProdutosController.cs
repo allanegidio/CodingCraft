@@ -1,7 +1,9 @@
 ﻿using Lojinha.MVC.Models;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
@@ -21,14 +23,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Produto produto = await db.Produtos.FindAsync(id);
+
             if (produto == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(produto);
         }
 
@@ -44,12 +45,13 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProdutoId,CategoriaId,Nome,Preco")] Produto produto)
+        public async Task<ActionResult> Create([Bind(Include = "ProdutoId,CategoriaId,Nome")] Produto produto)
         {
             if (ModelState.IsValid)
             {
                 db.Produtos.Add(produto);
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
 
@@ -61,14 +63,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Produto produto = await db.Produtos.FindAsync(id);
+
             if (produto == null)
-            {
                 return HttpNotFound();
-            }
+            
             ViewBag.CategoriaId = new SelectList(db.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
             return View(produto);
         }
@@ -78,14 +79,16 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProdutoId,CategoriaId,Nome,Preco")] Produto produto)
+        public async Task<ActionResult> Edit([Bind(Include = "ProdutoId,CategoriaId,Nome")] Produto produto)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(produto).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
+
             ViewBag.CategoriaId = new SelectList(db.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
             return View(produto);
         }
@@ -94,14 +97,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Produto produto = await db.Produtos.FindAsync(id);
+
             if (produto == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(produto);
         }
 
@@ -110,9 +112,36 @@ namespace Lojinha.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Produto produto = await db.Produtos.FindAsync(id);
-            db.Produtos.Remove(produto);
-            await db.SaveChangesAsync();
+            using(var scope = new TransactionScope())
+            {
+                var produto = await db.Produtos.FirstOrDefaultAsync(x => x.ProdutoId == id);
+
+                if (produto == null)
+                    return HttpNotFound();
+
+                var compraProdutosFornecedores = await db.ComprasFornecedoresProdutos.Where(pf => pf.ProdutoFornecedor.ProdutoId == id).ToListAsync();
+
+                var produtoFornecedores = await db.ProdutosFornecedores.Where(pf => pf.ProdutoId == id).ToListAsync();
+
+                var produtoLojas = await db.ProdutosLojas.Where(pf => pf.ProdutoId == id).ToListAsync();
+
+                if(produtoFornecedores.Count > 0)
+                    db.ProdutosFornecedores.RemoveRange(produtoFornecedores);
+
+                if (produtoLojas.Count > 0)
+                    db.ProdutosLojas.RemoveRange(produtoLojas);
+
+                if (compraProdutosFornecedores.Count > 0)
+                    db.ComprasFornecedoresProdutos.RemoveRange(compraProdutosFornecedores);
+
+
+                db.Produtos.Remove(produto);
+                await db.SaveChangesAsync();
+
+                scope.Complete();
+            }
+
+            
             return RedirectToAction("Index");
         }
 

@@ -23,14 +23,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             CompraFornecedor compraFornecedor = await db.ComprasFornecedores.FindAsync(id);
+
             if (compraFornecedor == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(compraFornecedor);
         }
 
@@ -101,7 +100,7 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CompraFornecedorId,CompraFornecedorProdutos,Data")] CompraFornecedor compraFornecedor)
+        public async Task<ActionResult> Edit([Bind(Include = "CompraFornecedorId,CompraFornecedorProdutos,FornecedorId,Data")] CompraFornecedor compraFornecedor)
         {
             if (ModelState.IsValid)
             {

@@ -18,7 +18,12 @@ namespace Lojinha.MVC.Models
         [Required]
         public int Estoque { get; set; }
 
+        [Required]
+        [DataType(DataType.Currency)]
+        public decimal Preco { get; set; }
+
         public virtual Produto Produto { get; set; }
+
         public virtual Loja Loja { get; set; }
     }
 }

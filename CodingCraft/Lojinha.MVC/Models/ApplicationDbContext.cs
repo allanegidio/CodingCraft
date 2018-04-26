@@ -14,6 +14,8 @@ namespace Lojinha.MVC.Models
         public ApplicationDbContext()
             : base("CodingCraft_Lojinha", throwIfV1Schema: false)
         {
+            // Para gerar SQL no Debug Output
+            //Database.Log = s => Debug.WriteLine(s);
         }
 
         public static ApplicationDbContext Create()
