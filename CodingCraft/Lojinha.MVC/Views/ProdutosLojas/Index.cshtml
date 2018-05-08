@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lojinha.MVC.Models.ProdutoFornecedor>
+﻿@model IEnumerable<Lojinha.MVC.Models.ProdutoLoja>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Fornecedor)
+            @Html.DisplayNameFor(model => model.Loja)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Produto.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estoque)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Preco)
@@ -26,18 +29,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+            @Html.DisplayFor(modelItem => item.Loja.Nome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Produto.Nome)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Estoque)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Preco)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProdutoFornecedorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProdutoFornecedorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProdutoFornecedorId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProdutoLojaId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProdutoLojaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProdutoLojaId })
         </td>
     </tr>
 }

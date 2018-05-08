@@ -1,9 +1,7 @@
 ﻿using Lojinha.MVC.Models;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Transactions;
 using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
@@ -112,36 +110,11 @@ namespace Lojinha.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            using(var scope = new TransactionScope())
-            {
-                var produto = await db.Produtos.FirstOrDefaultAsync(x => x.ProdutoId == id);
+            Produto produto = await db.Produtos.FindAsync(id);
 
-                if (produto == null)
-                    return HttpNotFound();
+            db.Produtos.Remove(produto);
+            await db.SaveChangesAsync();
 
-                var compraProdutosFornecedores = await db.ComprasFornecedoresProdutos.Where(pf => pf.ProdutoFornecedor.ProdutoId == id).ToListAsync();
-
-                var produtoFornecedores = await db.ProdutosFornecedores.Where(pf => pf.ProdutoId == id).ToListAsync();
-
-                var produtoLojas = await db.ProdutosLojas.Where(pf => pf.ProdutoId == id).ToListAsync();
-
-                if(produtoFornecedores.Count > 0)
-                    db.ProdutosFornecedores.RemoveRange(produtoFornecedores);
-
-                if (produtoLojas.Count > 0)
-                    db.ProdutosLojas.RemoveRange(produtoLojas);
-
-                if (compraProdutosFornecedores.Count > 0)
-                    db.ComprasFornecedoresProdutos.RemoveRange(compraProdutosFornecedores);
-
-
-                db.Produtos.Remove(produto);
-                await db.SaveChangesAsync();
-
-                scope.Complete();
-            }
-
-            
             return RedirectToAction("Index");
         }
 

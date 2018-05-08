@@ -1,4 +1,4 @@
-﻿@model Lojinha.MVC.Models.ProdutoFornecedor
+﻿@model Lojinha.MVC.Models.ProdutoLoja
 
 @{
     ViewBag.Title = "Edit";
@@ -12,10 +12,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ProdutoFornecedor</h4>
+        <h4>ProdutoLoja</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ProdutoFornecedorId)
+        @Html.HiddenFor(model => model.ProdutoLojaId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProdutoId, "ProdutoId", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -26,10 +26,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FornecedorId, "FornecedorId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LojaId, "LojaId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FornecedorId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+                @Html.DropDownList("LojaId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LojaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estoque, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Estoque, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Estoque, "", new { @class = "text-danger" })
             </div>
         </div>
 

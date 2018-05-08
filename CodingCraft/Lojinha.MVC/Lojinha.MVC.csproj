@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\ProdutosFornecedoresController.cs" />
+    <Compile Include="Controllers\ProdutosLojasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,11 +308,6 @@
     <Content Include="Views\Fornecedores\Details.cshtml" />
     <Content Include="Views\Fornecedores\Edit.cshtml" />
     <Content Include="Views\Fornecedores\Index.cshtml" />
-    <Content Include="Views\ProdutosFornecedores\Create.cshtml" />
-    <Content Include="Views\ProdutosFornecedores\Delete.cshtml" />
-    <Content Include="Views\ProdutosFornecedores\Details.cshtml" />
-    <Content Include="Views\ProdutosFornecedores\Edit.cshtml" />
-    <Content Include="Views\ProdutosFornecedores\Index.cshtml" />
     <Content Include="Views\ComprasFornecedoresProdutos\Create.cshtml" />
     <Content Include="Views\ComprasFornecedoresProdutos\Delete.cshtml" />
     <Content Include="Views\ComprasFornecedoresProdutos\Details.cshtml" />
@@ -331,6 +327,16 @@
     <Content Include="Views\Produtos\Details.cshtml" />
     <Content Include="Views\Produtos\Edit.cshtml" />
     <Content Include="Views\Produtos\Index.cshtml" />
+    <Content Include="Views\ProdutosLojas\Create.cshtml" />
+    <Content Include="Views\ProdutosLojas\Delete.cshtml" />
+    <Content Include="Views\ProdutosLojas\Details.cshtml" />
+    <Content Include="Views\ProdutosLojas\Edit.cshtml" />
+    <Content Include="Views\ProdutosLojas\Index.cshtml" />
+    <Content Include="Views\ProdutosFornecedores\Create.cshtml" />
+    <Content Include="Views\ProdutosFornecedores\Delete.cshtml" />
+    <Content Include="Views\ProdutosFornecedores\Details.cshtml" />
+    <Content Include="Views\ProdutosFornecedores\Edit.cshtml" />
+    <Content Include="Views\ProdutosFornecedores\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Lojinha.MVC.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using Lojinha.MVC.Models;
 
 namespace Lojinha.MVC.Controllers
 {
@@ -50,7 +45,7 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProdutoFornecedorId,ProdutoId,FornecedorId,DataModificacao,UsuarioModificacao,DataCriacao,UsuarioCriacao")] ProdutoFornecedor produtoFornecedor)
+        public async Task<ActionResult> Create([Bind(Include = "ProdutoFornecedorId,ProdutoId,FornecedorId,Preco,DataModificacao,UsuarioModificacao,DataCriacao,UsuarioCriacao")] ProdutoFornecedor produtoFornecedor)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +81,7 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProdutoFornecedorId,ProdutoId,FornecedorId,DataModificacao,UsuarioModificacao,DataCriacao,UsuarioCriacao")] ProdutoFornecedor produtoFornecedor)
+        public async Task<ActionResult> Edit([Bind(Include = "ProdutoFornecedorId,ProdutoId,FornecedorId,Preco,DataModificacao,UsuarioModificacao,DataCriacao,UsuarioCriacao")] ProdutoFornecedor produtoFornecedor)
         {
             if (ModelState.IsValid)
             {
