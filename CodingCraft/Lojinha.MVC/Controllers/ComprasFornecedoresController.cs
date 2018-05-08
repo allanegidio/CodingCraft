@@ -191,11 +191,13 @@ namespace Lojinha.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> NovaLinhaProduto()
+        [HttpGet]
+        public async Task<ActionResult> NovaLinhaProduto(int idFornecedor)
         {
             ViewBag.ProdutoFornecedores = await db.ProdutosFornecedores
                                                 .Include(p => p.Produto)
                                                 .Include(p => p.Fornecedor)
+                                                .Where(p => p.FornecedorId == idFornecedor)
                                                 .ToListAsync();
 
             return PartialView("_LinhaProduto", new CompraFornecedorProduto());

@@ -12,36 +12,37 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
-    <h4>CompraFornecedor</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Fornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.FornecedorId, ((IEnumerable<Fornecedor>)ViewBag.Fornecedores).Select(f => 
-                new SelectListItem {Text = f.Nome, Value = f.FornecedorId.ToString(), Selected = Model?.FornecedorId == f.FornecedorId }),
-                new { @class = "form-control" } )
-            @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>CompraFornecedor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.FornecedorId, ((IEnumerable<Fornecedor>)ViewBag.Fornecedores).Select(f => 
+                    new SelectListItem {Text = f.Nome, Value = f.FornecedorId.ToString(), Selected = Model?.FornecedorId == f.FornecedorId }),
+                    "Selecione o Fornecedor",
+                    new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.Partial("_Produtos", Model.CompraFornecedorProdutos)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @Html.Partial("_Produtos", Model.CompraFornecedorProdutos)
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
