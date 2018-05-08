@@ -19,14 +19,16 @@
             @Html.LabelFor(model => model.ProdutoFornecedorId, "ProdutoFornecedorId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ProdutoFornecedorId, ((IEnumerable<ProdutoFornecedor>)ViewBag.ProdutoFornecedores)
-                    .Select(f => new SelectListItem { Text = f.Produto.Nome + " no " + f.Fornecedor.Nome, Value = f.FornecedorId.ToString(), Selected = Model?.ProdutoFornecedorId == f.ProdutoFornecedorId })
+                    .Select(f => new SelectListItem { Text = f.Produto.Nome + " no " + f.Fornecedor.Nome, Value = f.ProdutoFornecedorId.ToString(), Selected = Model?.ProdutoFornecedorId == f.ProdutoFornecedorId })
                     , "Selecione o Produto", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProdutoFornecedorId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="col-md-2">
-            <a class="btn red" onclick="$(this).parent().parent().remove();">Excluir</a>
+        <div class="form-group">
+            <div class="col-md-2">
+                <a class="btn red" onclick="$(this).parent().parent().parent().remove();">Excluir</a>
+            </div>
         </div>
     </div>
 }

@@ -1,7 +1,9 @@
 ﻿using Lojinha.MVC.Models;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
@@ -110,10 +112,24 @@ namespace Lojinha.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Produto produto = await db.Produtos.FindAsync(id);
+            using (var scope = new TransactionScope())
+            {
+                var produto = await db.Produtos.FirstOrDefaultAsync(x => x.ProdutoId == id);
 
-            db.Produtos.Remove(produto);
-            await db.SaveChangesAsync();
+                if (produto == null)
+                    return HttpNotFound();
+
+                var compraProdutosFornecedores = await db.ComprasFornecedoresProdutos.Where(pf => pf.ProdutoFornecedor.ProdutoId == id).ToListAsync();
+                
+                if (compraProdutosFornecedores.Count > 0)
+                    db.ComprasFornecedoresProdutos.RemoveRange(compraProdutosFornecedores);
+
+
+                db.Produtos.Remove(produto);
+                await db.SaveChangesAsync();
+
+                scope.Complete();
+            }
 
             return RedirectToAction("Index");
         }

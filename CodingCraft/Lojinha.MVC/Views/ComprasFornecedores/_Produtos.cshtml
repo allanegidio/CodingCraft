@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Lojinha.MVC.Models.CompraFornecedorProduto>
 
-<div class="actions">
+<div class="form-group">
     <a class="btn btn-default btn-sm" id="adicionar-novo-produto">
         Adicionar Novo Produto
     </a>
     <script type="text/javascript">
-                $("#adicionar-novo-produto").click(function () {
-                    $.get('/ComprasFornecedores/NovaLinhaProduto', function (template) {
-                        $("#area-produtos").append(template);
-                    });
-                });
+        $("#adicionar-novo-produto").click(function () {
+            $.get('/ComprasFornecedores/NovaLinhaProduto', function (template) {
+                $("#area-produtos").append(template);
+            });
+        });
     </script>
 </div>
 
