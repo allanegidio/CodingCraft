@@ -15,6 +15,8 @@ namespace Lojinha.MVC.Models
         [Index("IX_Loja_Nome", IsUnique = true)]
         public string Nome { get; set; }
 
-        public virtual ICollection<ProdutoLoja> ProdutoLojas { get; set; }
+        public virtual ICollection<ProdutoLoja> ProdutosLoja { get; set; }
+
+        public virtual ICollection<VendaLoja> VendasLoja { get; set; }
     }
 }

@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProdutoFornecedor, "ProdutoFornecedorId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProdutoFornecedor, "Produto", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ProdutoFornecedorId, ((IEnumerable<ProdutoFornecedor>)ViewBag.ProdutoFornecedores)
                     .Select(f => new SelectListItem { Text = f.Produto.Nome + " no " + f.Fornecedor.Nome, Value = f.ProdutoFornecedorId.ToString(), Selected = Model?.ProdutoFornecedorId == f.ProdutoFornecedorId }),

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Lojinha.MVC.Models
 {
     [Table("ComprasFornecedoresProdutos")]
-    public class CompraFornecedorProduto
+    public class CompraFornecedorProduto : Entidade
     {
         [Key]
         public int CompraFornecedorProdutoId { get; set; }

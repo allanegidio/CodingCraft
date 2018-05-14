@@ -3,10 +3,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProdutoFornecedor.Produto.Nome)
+            @Html.DisplayNameFor(model => model.ProdutoFornecedor.Produto)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutoFornecedor.Preco)
         </th>
         <th>Ações</th>
     </tr>
@@ -19,6 +22,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutoFornecedor.Preco)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "ComprasFornecedoresProdutos", new { id = item.CompraFornecedorProdutoId }, null) |

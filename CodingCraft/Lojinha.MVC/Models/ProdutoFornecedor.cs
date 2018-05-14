@@ -15,6 +15,8 @@ namespace Lojinha.MVC.Models
         [Index("UIX_ProdutosFornecedores_ProdutoId_FornecedorId", IsUnique = true, Order = 2)]
         public int FornecedorId { get; set; }
 
+        [Required]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
 
         public virtual Fornecedor Fornecedor { get; set; }

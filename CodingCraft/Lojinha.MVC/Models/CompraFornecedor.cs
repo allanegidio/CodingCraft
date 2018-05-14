@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Lojinha.MVC.Models
 {
@@ -13,7 +14,8 @@ namespace Lojinha.MVC.Models
 
         public int FornecedorId { get; set; }
 
-        public decimal LastroTotal { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal LastroTotal => CompraFornecedorProdutos.Sum(cfp => cfp.ProdutoFornecedor.Preco);
 
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }
