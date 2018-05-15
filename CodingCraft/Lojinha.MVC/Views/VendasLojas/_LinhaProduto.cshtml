@@ -1,0 +1,40 @@
+﻿
+@model Lojinha.MVC.Models.VendaLojaProduto
+@using Lojinha.MVC.Models
+
+@using (Html.BeginCollectionItem(nameof(VendaLoja.VendaLojaProdutos)))
+{
+    <div>
+        @Html.HiddenFor(v => v.VendaLojaProdutoId)
+        @Html.HiddenFor(v => v.VendaLojaId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProdutoLoja, "Produto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProdutoLojaId,
+                    ((IEnumerable<ProdutoLoja>)ViewBag.ProdutosLojas).Select(f => new SelectListItem {
+                        Text = f.Produto.Nome + " na " + f.Loja.Nome,
+                        Value = f.ProdutoLojaId.ToString(),
+                        Selected = Model?.ProdutoLojaId == f.ProdutoLojaId
+                    }),
+                    "Selecione o Produto",
+                    htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProdutoLojaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2">
+                <a class="btn red" onclick="$(this).parent().parent().parent().remove();">Excluir</a>
+            </div>
+        </div>
+    </div>
+}
+

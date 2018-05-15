@@ -117,5 +117,7 @@ namespace Lojinha.MVC.Models
                 }
             }
         }
+
+        public System.Data.Entity.DbSet<Lojinha.MVC.Models.VendaLoja> VendaLojas { get; set; }
     }
 }

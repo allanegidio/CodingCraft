@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\ProdutosFornecedoresController.cs" />
     <Compile Include="Controllers\ProdutosLojasController.cs" />
+    <Compile Include="Controllers\VendasLojasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,6 +334,14 @@
     <Content Include="Views\ProdutosFornecedores\Details.cshtml" />
     <Content Include="Views\ProdutosFornecedores\Edit.cshtml" />
     <Content Include="Views\ProdutosFornecedores\Index.cshtml" />
+    <Content Include="Views\VendasLojas\Create.cshtml" />
+    <Content Include="Views\VendasLojas\Delete.cshtml" />
+    <Content Include="Views\VendasLojas\Details.cshtml" />
+    <Content Include="Views\VendasLojas\Edit.cshtml" />
+    <Content Include="Views\VendasLojas\Index.cshtml" />
+    <Content Include="Views\VendasLojas\_Produtos.cshtml" />
+    <Content Include="Views\VendasLojas\_LinhaProduto.cshtml" />
+    <Content Include="Views\VendasLojas\_ListaProdutos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

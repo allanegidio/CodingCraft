@@ -15,9 +15,10 @@ namespace Lojinha.MVC.Models
         public int FornecedorId { get; set; }
 
         [DataType(DataType.Currency)]
-        public decimal LastroTotal => CompraFornecedorProdutos.Sum(cfp => cfp.ProdutoFornecedor.Preco);
+        public decimal LastroTotal => CompraFornecedorProdutos?.Sum(cfp => cfp.Total) ?? 0;
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
 
         public virtual Fornecedor Fornecedor { get; set; }

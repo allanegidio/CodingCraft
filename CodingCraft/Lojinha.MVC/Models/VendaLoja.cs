@@ -15,7 +15,7 @@ namespace Lojinha.MVC.Models
         public int LojaId { get; set; }
 
         [DataType(DataType.Currency)]
-        public decimal Total => VendaLojaProdutos.Sum(vlp => vlp.ProdutoLoja.Preco);
+        public decimal TotalVenda => VendaLojaProdutos?.Sum(vlp => vlp.Total) ?? 0;
 
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }

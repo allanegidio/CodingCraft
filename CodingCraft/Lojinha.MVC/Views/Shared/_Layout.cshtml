@@ -25,12 +25,29 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Categorias", "Index", "Categorias")</li>
-                    <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
-                    <li>@Html.ActionLink("Lojas", "Index", "Lojas")</li>
-                    <li>@Html.ActionLink("ProdutosLojas", "Index", "ProdutosLojas")</li>
-                    <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
-                    <li>@Html.ActionLink("ProdutosFornecedores", "Index", "ProdutosFornecedores")</li>
-                    <li>@Html.ActionLink("ComprasFornecedores", "Index", "ComprasFornecedores")</li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
+                            <li>@Html.ActionLink("Produtos em Lojas", "Index", "ProdutosLojas")</li>
+                            <li>@Html.ActionLink("Produtos em Fornecedores", "Index", "ProdutosFornecedores")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lojas<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Lojas", "Index", "Lojas")</li>
+                            <li>@Html.ActionLink("Vendas de Produtos", "Index", "VendasLojas")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fornecedores<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
+                            <li>@Html.ActionLink("Compras em Fornecedores", "Index", "ComprasFornecedores")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

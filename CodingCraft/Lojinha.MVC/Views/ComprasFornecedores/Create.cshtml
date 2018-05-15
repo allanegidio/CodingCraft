@@ -19,10 +19,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.FornecedorId, ((IEnumerable<Fornecedor>)ViewBag.Fornecedores).Select(f => 
-                    new SelectListItem {Text = f.Nome, Value = f.FornecedorId.ToString(), Selected = Model?.FornecedorId == f.FornecedorId }),
+                @Html.DropDownListFor(model => model.FornecedorId,
+                    ((IEnumerable<Fornecedor>)ViewBag.Fornecedores).Select(f => new SelectListItem {
+                        Text = f.Nome,
+                        Value = f.FornecedorId.ToString(),
+                        Selected = Model?.FornecedorId == f.FornecedorId
+                    }),
                     "Selecione o Fornecedor",
                     new { @class = "form-control" } )
+
                 @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
             </div>
         </div>

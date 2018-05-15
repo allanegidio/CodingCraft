@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Lojinha.MVC.Models.VendaLojaProduto>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutoLoja.Produto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutoLoja.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>Ações</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutoLoja.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutoLoja.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "ComprasFornecedoresProdutos", new { id = item.VendaLojaProdutoId }, null) |
+                @Html.ActionLink("Details", "Details", "ComprasFornecedoresProdutos", new { id = item.VendaLojaProdutoId }, null) |
+                @Html.ActionLink("Delete", "Delete", "ComprasFornecedoresProdutos", new { id = item.VendaLojaProdutoId }, null)
+            </td>
+        </tr>
+    }
+
+</table>

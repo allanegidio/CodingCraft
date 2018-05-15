@@ -16,6 +16,9 @@ namespace Lojinha.MVC.Models
         [Required]
         public int Quantidade { get; set; }
 
+        [DataType(DataType.Currency)]
+        public decimal Total => ProdutoLoja?.Preco * Quantidade ?? 0;
+
         public virtual ProdutoLoja ProdutoLoja { get; set; }
 
         public virtual VendaLoja VendaLoja { get; set; }
