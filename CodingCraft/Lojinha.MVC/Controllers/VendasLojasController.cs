@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Mvc;
 
 namespace Lojinha.MVC.Controllers
@@ -15,7 +16,7 @@ namespace Lojinha.MVC.Controllers
         // GET: VendasLojas
         public async Task<ActionResult> Index()
         {
-            var vendaLojas = db.VendaLojas.Include(v => v.Loja);
+            var vendaLojas = db.VendasLojas.Include(v => v.Loja);
             return View(await vendaLojas.ToListAsync());
         }
 
@@ -25,7 +26,7 @@ namespace Lojinha.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             
-            VendaLoja vendaLoja = await db.VendaLojas.FindAsync(id);
+            VendaLoja vendaLoja = await db.VendasLojas.FindAsync(id);
 
             if (vendaLoja == null)
                 return HttpNotFound();
@@ -55,7 +56,7 @@ namespace Lojinha.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.VendaLojas.Add(vendaLoja);
+                db.VendasLojas.Add(vendaLoja);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -76,12 +77,17 @@ namespace Lojinha.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             
-            VendaLoja vendaLoja = await db.VendaLojas.FindAsync(id);
+            VendaLoja vendaLoja = await db.VendasLojas.FindAsync(id);
 
             if (vendaLoja == null)
                 return HttpNotFound();
-            
-            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", vendaLoja.LojaId);
+
+            ViewBag.ProdutosLojas = await db.ProdutosLojas
+                                        .Include(pj => pj.Produto)
+                                        .Include(pj => pj.Loja)
+                                        .Where(pj => pj.LojaId == vendaLoja.LojaId)
+                                        .ToListAsync();
+
             return View(vendaLoja);
         }
 
@@ -94,12 +100,62 @@ namespace Lojinha.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vendaLoja).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                using(var scope = new TransactionScope())
+                {
+                    //Produtos Apagados
+                    var produtosOriginais = await db.VendasLojasProdutos
+                                                .AsNoTracking()
+                                                .Where(vlp => vlp.VendaLojaId == vendaLoja.VendaLojaId)
+                                                .ToListAsync();
+
+                    foreach(var produto in produtosOriginais)
+                    {
+                        var existe = vendaLoja.VendaLojaProdutos.Any(vlp => vlp.VendaLojaProdutoId == produto.VendaLojaProdutoId);
+
+                        if (!existe)
+                        {
+                            var produtoExcluido = await db.VendasLojasProdutos
+                                .FirstOrDefaultAsync(vlp => vlp.VendaLojaProdutoId == produto.VendaLojaProdutoId);
+
+                            db.VendasLojasProdutos.Remove(produtoExcluido);
+                        }
+                    }
+
+                    await db.SaveChangesAsync();
+
+                    foreach (var produto in vendaLoja.VendaLojaProdutos)
+                    {
+                        //Produtos Editados
+                        if (produto.VendaLojaProdutoId > 0)
+                        {
+                            db.Entry(produto).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            //Produtos Criados
+                            produto.VendaLojaId = vendaLoja.VendaLojaId;
+                            db.VendasLojasProdutos.Add(produto);
+                        }
+                    }
+
+                    await db.SaveChangesAsync();
+
+                    db.Entry(vendaLoja).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+
+                    scope.Complete();
+
+                    return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", vendaLoja.LojaId);
+            ViewBag.ProdutosLojas = db.ProdutosLojas
+                                    .Include(pj => pj.Produto)
+                                    .Include(pj => pj.Loja)
+                                    .Where(pj => pj.LojaId == vendaLoja.LojaId)
+                                    .ToListAsync();
+
+
             return View(vendaLoja);
         }
 
@@ -109,7 +165,7 @@ namespace Lojinha.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             
-            VendaLoja vendaLoja = await db.VendaLojas.FindAsync(id);
+            VendaLoja vendaLoja = await db.VendasLojas.FindAsync(id);
 
             if (vendaLoja == null)
                 return HttpNotFound();
@@ -122,9 +178,9 @@ namespace Lojinha.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            VendaLoja vendaLoja = await db.VendaLojas.FindAsync(id);
+            VendaLoja vendaLoja = await db.VendasLojas.FindAsync(id);
 
-            db.VendaLojas.Remove(vendaLoja);
+            db.VendasLojas.Remove(vendaLoja);
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

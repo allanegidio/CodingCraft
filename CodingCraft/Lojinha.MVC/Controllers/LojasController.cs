@@ -106,8 +106,10 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Loja loja = await db.Lojas.FindAsync(id);
+
             db.Lojas.Remove(loja);
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 

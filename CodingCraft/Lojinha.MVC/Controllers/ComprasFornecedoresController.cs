@@ -84,12 +84,10 @@ namespace Lojinha.MVC.Controllers
             
 
             ViewBag.ProdutoFornecedores = await db.ProdutosFornecedores
-                                                .Include(p => p.Produto)
-                                                .Include(p => p.Fornecedor)
+                                                .Include(pf => pf.Produto)
+                                                .Include(pf => pf.Fornecedor)
+                                                .Where(pf => pf.FornecedorId == compraFornecedor.FornecedorId)
                                                 .ToListAsync();
-                                                    
-
-            ViewBag.Fornecedores = await db.Fornecedores.ToListAsync();
 
             return View(compraFornecedor);
         }
@@ -99,16 +97,17 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CompraFornecedorId,CompraFornecedorProdutos,FornecedorId,Data")] CompraFornecedor compraFornecedor)
+        public async Task<ActionResult> Edit([Bind(Include = "CompraFornecedorId,FornecedorId,CompraFornecedorProdutos,Data")] CompraFornecedor compraFornecedor)
         {
             if (ModelState.IsValid)
             {
                 using(var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
                     //Produtos Apagados
-                    var produtosOriginais = db.ComprasFornecedoresProdutos
-                                            .AsNoTracking()
-                                            .Where(c => c.CompraFornecedorId == compraFornecedor.CompraFornecedorId);
+                    var produtosOriginais = await db.ComprasFornecedoresProdutos
+                                                .AsNoTracking()
+                                                .Where(c => c.CompraFornecedorId == compraFornecedor.CompraFornecedorId)
+                                                .ToListAsync();
 
                     foreach(var produtoOriginal in produtosOriginais)
                     {
@@ -156,11 +155,7 @@ namespace Lojinha.MVC.Controllers
                                                 .Include(p => p.Produto)
                                                 .Include(p => p.Fornecedor)
                                                 .ToListAsync();
-
-            ViewBag.Fornecedores = await db.Fornecedores.ToListAsync();
-
-            //TODO : PRecisa colocar FornecedorID na tela
-
+            
             return View(compraFornecedor);
         }
 
@@ -168,14 +163,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             CompraFornecedor compraFornecedor = await db.ComprasFornecedores.FindAsync(id);
+
             if (compraFornecedor == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(compraFornecedor);
         }
 
@@ -185,8 +179,10 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             CompraFornecedor compraFornecedor = await db.ComprasFornecedores.FindAsync(id);
+
             db.ComprasFornecedores.Remove(compraFornecedor);
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 

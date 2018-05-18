@@ -31,6 +31,8 @@ namespace Lojinha.MVC.Models
         public DbSet<ProdutoLoja> ProdutosLojas { get; set; }
         public DbSet<CompraFornecedor> ComprasFornecedores { get; set; }
         public DbSet<CompraFornecedorProduto> ComprasFornecedoresProdutos { get; set; }
+        public DbSet<VendaLoja> VendasLojas { get; set; }
+        public DbSet<VendaLojaProduto> VendasLojasProdutos { get; set; }
 
         public override int SaveChanges()
         {
@@ -117,7 +119,5 @@ namespace Lojinha.MVC.Models
                 }
             }
         }
-
-        public System.Data.Entity.DbSet<Lojinha.MVC.Models.VendaLoja> VendaLojas { get; set; }
     }
 }
