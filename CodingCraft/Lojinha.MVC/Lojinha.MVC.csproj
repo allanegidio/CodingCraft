@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ComprasFornecedoresController.cs" />
+    <Compile Include="Controllers\ContabilidadesController.cs" />
     <Compile Include="Controllers\FornecedoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojasController.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompraFornecedor.cs" />
     <Compile Include="Models\CompraFornecedorProduto.cs" />
+    <Compile Include="Models\Contabilidade.cs" />
     <Compile Include="Models\Fornecedor.cs" />
     <Compile Include="Models\ProdutoFornecedor.cs" />
     <Compile Include="Models\ProdutoLoja.cs" />
@@ -342,6 +344,13 @@
     <Content Include="Views\VendasLojas\_Produtos.cshtml" />
     <Content Include="Views\VendasLojas\_LinhaProduto.cshtml" />
     <Content Include="Views\VendasLojas\_ListaProdutos.cshtml" />
+    <Content Include="Views\Contabilidades\Create.cshtml" />
+    <Content Include="Views\Contabilidades\Delete.cshtml" />
+    <Content Include="Views\Contabilidades\Details.cshtml" />
+    <Content Include="Views\Contabilidades\Edit.cshtml" />
+    <Content Include="Views\Contabilidades\Index.cshtml" />
+    <Content Include="Views\Contabilidades\_ListaVendas.cshtml" />
+    <Content Include="Views\Contabilidades\_ListaCompras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

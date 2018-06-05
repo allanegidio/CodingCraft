@@ -1,0 +1,45 @@
+﻿@model Lojinha.MVC.Models.Contabilidade
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contabilidade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastro)
+        </dd>
+    </dl>
+</div>
+
+@Html.Partial("_ListaVendas", Model.VendasLojas)
+@Html.Partial("_ListaCompras", Model.ComprasFornecedores)
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ContabilidadeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

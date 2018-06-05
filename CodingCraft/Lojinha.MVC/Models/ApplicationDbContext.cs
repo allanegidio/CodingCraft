@@ -33,6 +33,7 @@ namespace Lojinha.MVC.Models
         public DbSet<CompraFornecedorProduto> ComprasFornecedoresProdutos { get; set; }
         public DbSet<VendaLoja> VendasLojas { get; set; }
         public DbSet<VendaLojaProduto> VendasLojasProdutos { get; set; }
+        public DbSet<Contabilidade> Contabilidades { get; set; }
 
         public override int SaveChanges()
         {
