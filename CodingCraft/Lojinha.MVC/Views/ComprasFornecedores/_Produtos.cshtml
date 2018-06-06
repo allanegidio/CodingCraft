@@ -6,7 +6,6 @@
     </a>
     <script type="text/javascript">
         $("#adicionar-novo-produto").click(function () {
-
             $.get('/ComprasFornecedores/NovaLinhaProduto', { idFornecedor: $("#FornecedorId").val() }, function (template) {
                 $("#area-produtos").append(template);
             });

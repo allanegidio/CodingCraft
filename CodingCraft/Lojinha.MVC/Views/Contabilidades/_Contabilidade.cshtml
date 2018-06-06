@@ -1,0 +1,25 @@
+﻿@model Lojinha.MVC.Models.Contabilidade
+
+
+
+<div id="area-contabilidade">
+    @if (Model != null)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lastro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Lastro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lastro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.Partial("_ListaCompras", Model.ComprasFornecedores);
+        @Html.Partial("_ListaVendas", Model.VendasLojas);
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>

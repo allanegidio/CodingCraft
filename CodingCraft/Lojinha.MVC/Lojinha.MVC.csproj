@@ -351,6 +351,7 @@
     <Content Include="Views\Contabilidades\Index.cshtml" />
     <Content Include="Views\Contabilidades\_ListaVendas.cshtml" />
     <Content Include="Views\Contabilidades\_ListaCompras.cshtml" />
+    <Content Include="Views\Contabilidades\_Contabilidade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

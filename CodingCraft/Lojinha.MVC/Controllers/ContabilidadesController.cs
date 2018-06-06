@@ -22,14 +22,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Contabilidade contabilidade = await db.Contabilidades.FindAsync(id);
+
             if (contabilidade == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(contabilidade);
         }
 
@@ -44,17 +43,18 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ContabilidadeId,DataInicio,DataFim")] Contabilidade contabilidade)
+        public async Task<ActionResult> Create([Bind(Include = "ContabilidadeId,DataInicio,DataFim,Lastro,VendasLojas,ComprasFornecedores")] Contabilidade contabilidade)
         {
             if (ModelState.IsValid)
             {
-                contabilidade.VendasLojas = await db.VendasLojas
-                                                .Where(vl => vl.Data >= contabilidade.DataInicio && vl.Data <= contabilidade.DataFim)
-                                                .ToListAsync() as ICollection<VendaLoja>;
 
-                contabilidade.ComprasFornecedores = await db.ComprasFornecedores
-                                                    .Where(cf => cf.Data >= contabilidade.DataInicio && cf.Data <= contabilidade.DataFim)
-                                                    .ToListAsync() as ICollection<CompraFornecedor>;
+                //contabilidade.VendasLojas = await db.VendasLojas
+                //                                .Where(vl => vl.Data >= contabilidade.DataInicio && vl.Data <= contabilidade.DataFim)
+                //                                .ToListAsync() as ICollection<VendaLoja>;
+
+                //contabilidade.ComprasFornecedores = await db.ComprasFornecedores
+                //                                    .Where(cf => cf.Data >= contabilidade.DataInicio && cf.Data <= contabilidade.DataFim)
+                //                                    .ToListAsync() as ICollection<CompraFornecedor>;
 
                 db.Contabilidades.Add(contabilidade);
 
@@ -120,6 +120,20 @@ namespace Lojinha.MVC.Controllers
             db.Contabilidades.Remove(contabilidade);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Contabilizar(Contabilidade contabilidade)
+        {
+            contabilidade.VendasLojas = await db.VendasLojas
+                                                .Where(vl => vl.Data >= contabilidade.DataInicio && vl.Data <= contabilidade.DataFim)
+                                                .ToListAsync() as ICollection<VendaLoja>;
+
+            contabilidade.ComprasFornecedores = await db.ComprasFornecedores
+                                                .Where(cf => cf.Data >= contabilidade.DataInicio && cf.Data <= contabilidade.DataFim)
+                                                .ToListAsync() as ICollection<CompraFornecedor>;
+
+            return PartialView("_Contabilidade", contabilidade);
         }
 
         protected override void Dispose(bool disposing)
