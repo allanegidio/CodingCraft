@@ -352,6 +352,8 @@
     <Content Include="Views\Contabilidades\_ListaVendas.cshtml" />
     <Content Include="Views\Contabilidades\_ListaCompras.cshtml" />
     <Content Include="Views\Contabilidades\_Contabilidade.cshtml" />
+    <Content Include="Views\Contabilidades\_LinhaCompra.cshtml" />
+    <Content Include="Views\Contabilidades\_LinhaVenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

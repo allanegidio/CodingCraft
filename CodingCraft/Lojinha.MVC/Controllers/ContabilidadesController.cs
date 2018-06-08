@@ -35,7 +35,10 @@ namespace Lojinha.MVC.Controllers
         // GET: Contabilidades/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Contabilidade {
+                VendasLojas = new List<VendaLoja>(),
+                ComprasFornecedores = new List<CompraFornecedor>()
+            });
         }
 
         // POST: Contabilidades/Create
@@ -43,7 +46,7 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ContabilidadeId,DataInicio,DataFim,Lastro,VendasLojas,ComprasFornecedores")] Contabilidade contabilidade)
+        public async Task<ActionResult> Create([Bind(Include = "ContabilidadeId,DataInicio,DataFim,Lastro,Data,Fornecedor,Loja,VendasLojas,ComprasFornecedores")] Contabilidade contabilidade)
         {
             if (ModelState.IsValid)
             {

@@ -14,6 +14,8 @@ namespace Lojinha.MVC.Models
 
         public int LojaId { get; set; }
 
+        public int ContabilidadeId { get; set; }
+
         [DataType(DataType.Currency)]
         public decimal TotalVenda => VendaLojaProdutos?.Sum(vlp => vlp.Total) ?? 0;
 
@@ -21,6 +23,8 @@ namespace Lojinha.MVC.Models
         public DateTime Data { get; set; }
 
         public virtual Loja Loja { get; set; }
+
+        public virtual Contabilidade Contabilidade { get; set; }
 
         public virtual ICollection<VendaLojaProduto> VendaLojaProdutos { get; set; }
     }
