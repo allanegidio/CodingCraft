@@ -14,7 +14,7 @@ namespace Lojinha.MVC.Models
 
         public int LojaId { get; set; }
 
-        public int ContabilidadeId { get; set; }
+        public int? ContabilidadeId { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal TotalVenda => VendaLojaProdutos?.Sum(vlp => vlp.Total) ?? 0;

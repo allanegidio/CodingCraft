@@ -14,7 +14,7 @@ namespace Lojinha.MVC.Models
 
         public int FornecedorId { get; set; }
 
-        public int ContabilidadeId { get; set; }
+        public int? ContabilidadeId { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal LastroTotal => CompraFornecedorProdutos?.Sum(cfp => cfp.Total) ?? 0;

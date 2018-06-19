@@ -21,14 +21,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
+
             if (produtoLoja == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(produtoLoja);
         }
 
@@ -37,6 +36,7 @@ namespace Lojinha.MVC.Controllers
         {
             ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome");
             ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome");
+
             return View();
         }
 
@@ -50,12 +50,14 @@ namespace Lojinha.MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.ProdutosLojas.Add(produtoLoja);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
             ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
+            
             return View(produtoLoja);
         }
 
@@ -63,16 +65,16 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
+
             if (produtoLoja == null)
-            {
                 return HttpNotFound();
-            }
+
             ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
             ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
+
             return View(produtoLoja);
         }
 
@@ -86,11 +88,14 @@ namespace Lojinha.MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(produtoLoja).State = EntityState.Modified;
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             ViewBag.LojaId = new SelectList(db.Lojas, "LojaId", "Nome", produtoLoja.LojaId);
             ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", produtoLoja.ProdutoId);
+
             return View(produtoLoja);
         }
 
@@ -98,14 +103,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
+            
             if (produtoLoja == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(produtoLoja);
         }
 
@@ -116,6 +120,7 @@ namespace Lojinha.MVC.Controllers
         {
             ProdutoLoja produtoLoja = await db.ProdutosLojas.FindAsync(id);
             db.ProdutosLojas.Remove(produtoLoja);
+
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -123,9 +128,8 @@ namespace Lojinha.MVC.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 db.Dispose();
-            }
+
             base.Dispose(disposing);
         }
     }

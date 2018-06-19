@@ -20,14 +20,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Loja loja = await db.Lojas.FindAsync(id);
+
             if (loja == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(loja);
         }
 
@@ -47,6 +46,7 @@ namespace Lojinha.MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Lojas.Add(loja);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -58,14 +58,13 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Loja loja = await db.Lojas.FindAsync(id);
+
             if (loja == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(loja);
         }
 
@@ -79,9 +78,11 @@ namespace Lojinha.MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(loja).State = EntityState.Modified;
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             return View(loja);
         }
 
@@ -89,14 +90,14 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
+
             Loja loja = await db.Lojas.FindAsync(id);
+
             if (loja == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(loja);
         }
 
@@ -116,9 +117,8 @@ namespace Lojinha.MVC.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 db.Dispose();
-            }
+
             base.Dispose(disposing);
         }
     }

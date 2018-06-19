@@ -56,6 +56,7 @@ namespace Lojinha.MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.ComprasFornecedores.Add(compraFornecedor);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -201,9 +202,8 @@ namespace Lojinha.MVC.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 db.Dispose();
-            }
+            
             base.Dispose(disposing);
         }
     }
