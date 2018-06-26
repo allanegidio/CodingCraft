@@ -1,5 +1,8 @@
-﻿using Lojinha.MVC.Models;
+﻿using Lojinha.MVC.Extensions;
+using Lojinha.MVC.Models;
+using Lojinha.MVC.ViewModels;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -14,6 +17,17 @@ namespace Lojinha.MVC.Controllers
         public async Task<ActionResult> Index()
         {
             return View(await db.Categorias.ToListAsync());
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Pesquisa(PesquisaViewModel viewModel)
+        {
+            if (!ModelState.IsValid && !viewModel.Filtro.ContainsValue())
+                return View();
+
+            var categorias = await db.Categorias.Where(c => c.Nome.Contains(viewModel.Filtro)).ToListAsync();
+
+            return View("Index", categorias);
         }
 
         // GET: Categorias/Details/5
