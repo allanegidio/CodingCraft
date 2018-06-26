@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@Html.Partial("_Pesquisar")
+
 <table class="table">
     <tr>
         <th>
@@ -23,22 +26,23 @@
         <th>Ações</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastroTotal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CompraFornecedorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CompraFornecedorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CompraFornecedorId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastroTotal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CompraFornecedorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CompraFornecedorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompraFornecedorId })
+            </td>
+        </tr>
+    }
 </table>

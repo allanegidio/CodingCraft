@@ -1,11 +1,9 @@
-﻿@model Lojinha.MVC.ViewModels.PesquisaViewModel
-
-@using (Html.BeginForm("Pesquisa", Html.Controller(), FormMethod.Get))
+﻿@using (Html.BeginForm("Pesquisar", Html.Controller(), FormMethod.Get))
 {
     <div class="row" id="search-button">
-        <div class="col-lg-3">
+        <div class="col-lg-12">
             <div class="input-group">
-                @Html.TextBoxFor(model => model.Filtro, new { @class = "form-control", @placeholder = "Search for..." })
+                <input type="text" name="filtro" placeholder="Search for..." class="form-control" />
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">Buscar!</button>
                 </span>

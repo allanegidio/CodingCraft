@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@Html.Partial("_Pesquisar")
+
 <table class="table">
     <tr>
         <th>
@@ -17,17 +20,18 @@
         <th>Ações</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FornecedorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FornecedorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FornecedorId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FornecedorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FornecedorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FornecedorId })
+            </td>
+        </tr>
+    }
 
 </table>

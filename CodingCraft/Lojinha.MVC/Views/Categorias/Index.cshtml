@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Lojinha.MVC.Models.Categoria>
-@using Lojinha.MVC.ViewModels
 
 @{
     ViewBag.Title = "Index";
@@ -11,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@Html.Partial("_Pesquisa", new PesquisaViewModel())
+@Html.Partial("_Pesquisar")
 
 <table class="table">
     <tr>

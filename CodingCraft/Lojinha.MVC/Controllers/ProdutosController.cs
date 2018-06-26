@@ -1,4 +1,5 @@
-﻿using Lojinha.MVC.Models;
+﻿using Lojinha.MVC.Extensions;
+using Lojinha.MVC.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -15,8 +16,21 @@ namespace Lojinha.MVC.Controllers
         // GET: Produtos
         public async Task<ActionResult> Index()
         {
-            var produtos = db.Produtos.Include(p => p.Categoria);
-            return View(await produtos.ToListAsync());
+            return View(await db.Produtos.Include(p => p.Categoria).ToListAsync());
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Pesquisar(string filtro)
+        {
+            if (!filtro.ContainsValue())
+                return RedirectToAction("Index");
+
+            var produtos = await db.Produtos
+                                .Include(p => p.Categoria)
+                                .Where(p => p.Nome.Contains(filtro) || p.Categoria.Nome.Contains(filtro))
+                                .ToListAsync();
+
+            return View("Index", produtos);
         }
 
         // GET: Produtos/Details/5
