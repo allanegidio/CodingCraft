@@ -84,7 +84,7 @@ namespace Lojinha.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoriaId,Nome")] Categoria categoria)
+        public async Task<ActionResult> Edit([Bind(Include = "CategoriaId,Nome,DataCriacao,UsuarioCriacao")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {

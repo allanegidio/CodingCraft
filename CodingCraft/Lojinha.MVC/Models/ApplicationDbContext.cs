@@ -1,7 +1,9 @@
-﻿using Lojinha.MVC.Models.Interfaces;
+﻿using Lojinha.MVC.Models.Auditoria;
+using Lojinha.MVC.Models.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,6 +36,9 @@ namespace Lojinha.MVC.Models
         public DbSet<VendaLoja> VendasLojas { get; set; }
         public DbSet<VendaLojaProduto> VendasLojasProdutos { get; set; }
         public DbSet<Contabilidade> Contabilidades { get; set; }
+
+        //Auditorias
+        public DbSet<CategoriaAuditoria> CategoriasAuditorias { get; set; }
 
         public override int SaveChanges()
         {
@@ -83,41 +88,54 @@ namespace Lojinha.MVC.Models
         {
             var currentTime = DateTime.Now;
 
-            foreach (var entry in ChangeTracker.Entries().Where(e => e.Entity != null &&
-                     typeof(IEntidadeNaoEditavel).IsAssignableFrom(e.Entity.GetType())))
+            foreach(var entidade in ChangeTracker.Entries().Where(e => e.Entity != null))
             {
-                if (entry.State == EntityState.Added)
+                var tipoTabelaAuditoria = entidade.Entity.GetType().GetInterfaces()[1].GenericTypeArguments[0];
+                var registroTabelaAuditoria = Activator.CreateInstance(tipoTabelaAuditoria);
+                
+                if (entidade.State == EntityState.Added)
                 {
-                    if (entry.Property(nameof(IEntidadeNaoEditavel.DataCriacao)) != null)
+                    if (entidade.Property(nameof(IEntidadeNaoEditavel.DataCriacao)) != null)
                     {
-                        entry.Property(nameof(IEntidadeNaoEditavel.DataCriacao)).CurrentValue = currentTime;
+                        entidade.Property(nameof(IEntidadeNaoEditavel.DataCriacao)).CurrentValue = currentTime;
                     }
 
-                    if (entry.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)) != null)
+                    if (entidade.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)) != null)
                     {
-                        entry.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)).CurrentValue = HttpContext.Current != null
+                        entidade.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)).CurrentValue = HttpContext.Current != null
                                                                                                     ? HttpContext.Current.User.Identity.Name
                                                                                                     : "Usuario";
                     }
+
+                    base.SaveChanges();
+
+                    foreach (var propriedade in entidade.Entity.GetType().BaseType.GetProperties())
+                    {
+                        registroTabelaAuditoria.GetType()
+                                               .GetProperty(propriedade.Name)
+                                               .SetValue(registroTabelaAuditoria, entidade.Entity.GetType().GetProperty(propriedade.Name).GetValue(entidade.Entity, null));
+                    }
+
+                    Set(registroTabelaAuditoria.GetType()).Add(registroTabelaAuditoria);                    
                 }
 
-                if (typeof(IEntidade).IsAssignableFrom(entry.Entity.GetType()) && entry.State == EntityState.Modified)
+                if (entidade.State == EntityState.Modified)
                 {
-                    entry.Property(nameof(IEntidadeNaoEditavel.DataCriacao)).IsModified = false;
-                    entry.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)).IsModified = false;
+                    var tipoTabelaDb = Set(registroTabelaAuditoria.GetType());
+                    //var modelAuditoria = //tipoTabelaDb.Single(auditoria => auditoria.????Id == entidade.?????Id)
 
-                    if (entry.Property(nameof(IEntidade.DataModificacao)) != null)
+                    if ((registroTabelaAuditoria as DbEntityEntry).Property(nameof(IEntidade.DataModificacao)) != null)
                     {
-                        entry.Property(nameof(IEntidade.DataModificacao)).CurrentValue = currentTime;
+                        (registroTabelaAuditoria as DbEntityEntry).Property(nameof(IEntidade.DataModificacao)).CurrentValue = currentTime;
                     }
 
-                    if (entry.Property(nameof(IEntidade.UsuarioModificacao)) != null)
+                    if ((registroTabelaAuditoria as DbEntityEntry).Property(nameof(IEntidade.UsuarioModificacao)) != null)
                     {
-                        entry.Property(nameof(IEntidade.UsuarioModificacao)).CurrentValue = HttpContext.Current != null
-                                                                                            ? HttpContext.Current.User.Identity.Name
-                                                                                            : "Usuario";
+                        (registroTabelaAuditoria as DbEntityEntry).Property(nameof(IEntidade.UsuarioModificacao)).CurrentValue = HttpContext.Current != null
+                                                                                                                                    ? HttpContext.Current.User.Identity.Name
+                                                                                                                                    : "Usuario";
                     }
-                }
+                }                
             }
         }
     }

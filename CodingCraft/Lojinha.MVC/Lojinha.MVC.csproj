@@ -212,10 +212,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Abstratas\CategoriaAbstrata.cs" />
+    <Compile Include="Models\Auditoria\CategoriaAuditoria.cs" />
     <Compile Include="Models\CompraFornecedor.cs" />
     <Compile Include="Models\CompraFornecedorProduto.cs" />
     <Compile Include="Models\Contabilidade.cs" />
     <Compile Include="Models\Fornecedor.cs" />
+    <Compile Include="Models\Interfaces\IAuditavel.cs" />
     <Compile Include="Models\ProdutoFornecedor.cs" />
     <Compile Include="Models\ProdutoLoja.cs" />
     <Compile Include="Models\VendaLoja.cs" />

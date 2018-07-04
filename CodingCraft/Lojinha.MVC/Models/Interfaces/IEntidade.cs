@@ -2,7 +2,7 @@
 
 namespace Lojinha.MVC.Models.Interfaces
 {
-    public interface IEntidade : IEntidadeNaoEditavel
+    public interface IEntidade
     {
         DateTime? DataModificacao { get; set; }
         string UsuarioModificacao { get; set; }
