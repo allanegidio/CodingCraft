@@ -10,8 +10,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.DataCriacao)
-    @Html.HiddenFor(model => model.UsuarioCriacao)
     
     <div class="form-horizontal">
         <h4>Categoria</h4>

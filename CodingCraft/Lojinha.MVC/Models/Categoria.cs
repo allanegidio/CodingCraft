@@ -13,6 +13,11 @@ namespace Lojinha.MVC.Models
         [Key]
         public override int CategoriaId { get; set; }
 
+        [Required]
+        [StringLength(200)]
+        [Index("IX_Categoria_Nome", IsUnique = true)]
+        public override string Nome { get; set; }
+
         public virtual ICollection<Produto> Produtos { get; set; }
     }
 }

@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Lojinha.MVC.Models.Auditoria
 {
     [Table("CategoriasAuditoria")]
-    public class CategoriaAuditoria : CategoriaAbstrata, IEntidade
+    public sealed class CategoriaAuditoria : CategoriaAbstrata, IEntidadeAuditoria
     {
         [Key]
         public int CategoriaAuditoriaId { get; set; }
 
-        public virtual DateTime? DataModificacao { get; set; }
+        public DateTime DataModificacao { get; set; }
 
-        public virtual string UsuarioModificacao { get; set; }
+        public string UsuarioModificacao { get; set; }
     }
 }

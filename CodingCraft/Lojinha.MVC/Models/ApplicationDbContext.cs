@@ -1,4 +1,5 @@
-﻿using Lojinha.MVC.Models.Auditoria;
+﻿using Lojinha.MVC.Extensions;
+using Lojinha.MVC.Models.Auditoria;
 using Lojinha.MVC.Models.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -89,78 +90,24 @@ namespace Lojinha.MVC.Models
 
             foreach(var entidade in ChangeTracker.Entries().Where(e => e.Entity != null))
             {
-                var tipoTabelaAuditoria = entidade.Entity.GetType().GetInterfaces()[1].GenericTypeArguments[0];
+                var tipoTabelaAuditoria = entidade.Entity.GetType().GetInterfaces().Single(x => x.IsGenericType).GenericTypeArguments[0];
                 var registroTabelaAuditoria = Activator.CreateInstance(tipoTabelaAuditoria);
                 
-                if (entidade.State == EntityState.Added)
-                {
-                    if (entidade.Property(nameof(IEntidadeNaoEditavel.DataCriacao)) != null)
-                    {
-                        entidade.Property(nameof(IEntidadeNaoEditavel.DataCriacao)).CurrentValue = currentTime;
-                    }
+                base.SaveChanges();
 
-                    if (entidade.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)) != null)
-                    {
-                        entidade.Property(nameof(IEntidadeNaoEditavel.UsuarioCriacao)).CurrentValue = HttpContext.Current != null
-                                                                                                    ? HttpContext.Current.User.Identity.Name
-                                                                                                    : "Usuario";
-                    }
 
-                    base.SaveChanges();              
-                }
-
-                if (entidade.State == EntityState.Modified)
-                {
-                    if (registroTabelaAuditoria.GetType()
-                                            .GetProperty(nameof(IEntidade.DataModificacao))
-                                            .GetValue(registroTabelaAuditoria) == null)
-                    {
-                        registroTabelaAuditoria.GetType()
-                                           .GetProperty(nameof(IEntidade.DataModificacao))
-                                           .SetValue(registroTabelaAuditoria, currentTime);
-                    }
-
-                    if (registroTabelaAuditoria.GetType()
-                                            .GetProperty(nameof(IEntidade.UsuarioModificacao))
-                                            .GetValue(registroTabelaAuditoria) == null)
-                    {
-                        registroTabelaAuditoria.GetType()
-                                           .GetProperty(nameof(IEntidade.UsuarioModificacao))
-                                           .SetValue(registroTabelaAuditoria, HttpContext.Current != null
-                                                                                    ? HttpContext.Current.User.Identity.Name
-                                                                                    : "Usuario");
-                    }
-                }
-
-                if (entidade.State == EntityState.Deleted)
-                {
-                    if (registroTabelaAuditoria.GetType()
-                                            .GetProperty(nameof(IEntidade.DataModificacao))
-                                            .GetValue(registroTabelaAuditoria) == null)
-                    {
-                        registroTabelaAuditoria.GetType()
-                                           .GetProperty(nameof(IEntidade.DataModificacao))
-                                           .SetValue(registroTabelaAuditoria, currentTime);
-                    }
-
-                    if (registroTabelaAuditoria.GetType()
-                                            .GetProperty(nameof(IEntidade.UsuarioModificacao))
-                                            .GetValue(registroTabelaAuditoria) == null)
-                    {
-                        registroTabelaAuditoria.GetType()
-                                           .GetProperty(nameof(IEntidade.UsuarioModificacao))
-                                           .SetValue(registroTabelaAuditoria, HttpContext.Current != null
-                                                                                    ? HttpContext.Current.User.Identity.Name
-                                                                                    : "Usuario");
-                    }
-                }
-
-                //Precisa entidade.Entity.GetType().BaseType.BaseType.GetProperties() para funcionar quando estou deletando.
+                //Ainda não funciona para Delete.
                 foreach (var propriedade in entidade.Entity.GetType().BaseType.GetProperties())
                 {
                     registroTabelaAuditoria.GetType()
                                            .GetProperty(propriedade.Name)
-                                           .SetValue(registroTabelaAuditoria, entidade.Entity.GetType().GetProperty(propriedade.Name).GetValue(entidade.Entity, null));
+                                           .SetValue(registroTabelaAuditoria, propriedade.GetValue(entidade.Entity, null));
+                }
+
+                if (typeof(IEntidadeAuditoria).IsAssignableFrom(registroTabelaAuditoria.GetType()))
+                {
+                    registroTabelaAuditoria.GetType().GetProperty(nameof(IEntidadeAuditoria.DataModificacao)).SetValue(registroTabelaAuditoria, currentTime);
+                    registroTabelaAuditoria.GetType().GetProperty(nameof(IEntidadeAuditoria.UsuarioModificacao)).SetValue(registroTabelaAuditoria, HttpContext.Current?.User?.Identity?.Name.GetValueOrNull() ?? "Usuario");
                 }
 
                 Set(registroTabelaAuditoria.GetType()).Add(registroTabelaAuditoria);

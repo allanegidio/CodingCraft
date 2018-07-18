@@ -219,6 +219,7 @@
     <Compile Include="Models\Contabilidade.cs" />
     <Compile Include="Models\Fornecedor.cs" />
     <Compile Include="Models\Interfaces\IAuditavel.cs" />
+    <Compile Include="Models\Interfaces\IEntidadeAuditoria.cs" />
     <Compile Include="Models\ProdutoFornecedor.cs" />
     <Compile Include="Models\ProdutoLoja.cs" />
     <Compile Include="Models\VendaLoja.cs" />
