@@ -87,21 +87,21 @@ namespace Lojinha.MVC.Models
         private void CheckEntities()
         {
             var currentTime = DateTime.Now;
-
-            foreach(var entidade in ChangeTracker.Entries().Where(e => e.Entity != null))
+            
+            foreach (var entidade in ChangeTracker.Entries().Where(e => e.Entity != null 
+                        && e.Entity.GetType().GetInterfaces().Any(x => x.IsGenericType)))
             {
                 var tipoTabelaAuditoria = entidade.Entity.GetType().GetInterfaces().Single(x => x.IsGenericType).GenericTypeArguments[0];
                 var registroTabelaAuditoria = Activator.CreateInstance(tipoTabelaAuditoria);
-                
-                base.SaveChanges();
 
+                base.SaveChanges();
 
                 //Ainda não funciona para Delete.
                 foreach (var propriedade in entidade.Entity.GetType().BaseType.GetProperties())
                 {
                     registroTabelaAuditoria.GetType()
-                                           .GetProperty(propriedade.Name)
-                                           .SetValue(registroTabelaAuditoria, propriedade.GetValue(entidade.Entity, null));
+                                            .GetProperty(propriedade.Name)
+                                            .SetValue(registroTabelaAuditoria, propriedade.GetValue(entidade.Entity, null));
                 }
 
                 if (typeof(IEntidadeAuditoria).IsAssignableFrom(registroTabelaAuditoria.GetType()))
