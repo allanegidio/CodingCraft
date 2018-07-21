@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lojinha.MVC", "Lojinha.MVC\Lojinha.MVC.csproj", "{C2BB5A88-4CC4-4246-A4C3-BAD3C53B7A5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estamparia.MVC", "Estamparia.MVC\Estamparia.MVC.csproj", "{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C2BB5A88-4CC4-4246-A4C3-BAD3C53B7A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2BB5A88-4CC4-4246-A4C3-BAD3C53B7A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2BB5A88-4CC4-4246-A4C3-BAD3C53B7A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
