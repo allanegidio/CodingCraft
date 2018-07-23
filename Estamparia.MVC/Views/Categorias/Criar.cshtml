@@ -1,0 +1,26 @@
+@model Estamparia.MVC.Models.Categoria
+
+@{
+    ViewBag.Title = "Criar";
+}
+
+<h2>Criar</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Categoria</legend>
+
+		@Html.Partial("_CriarOuEditar", Model)
+
+        <p>
+            <input type="submit" value="Criar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Listagem", "Indice")
+</div>
+
+

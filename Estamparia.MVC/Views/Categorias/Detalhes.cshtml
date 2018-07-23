@@ -1,0 +1,23 @@
+@model Estamparia.MVC.Models.Categoria
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<fieldset>
+    <legend>Categoria</legend>
+
+    <div class="display-label">Nome</div>
+    <div class="display-field">@Model.Nome</div>
+
+    <div class="display-label">Produtos</div>
+    <div class="display-field">@(Model.Produtos == null ? "None" : Model.Produtos.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.CategoriaId }) |
+    @Html.ActionLink("Voltar para Listagem", "Indice")
+</p>
+
+

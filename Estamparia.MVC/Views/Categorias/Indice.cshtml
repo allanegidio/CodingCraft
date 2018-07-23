@@ -1,0 +1,43 @@
+@model IEnumerable<Estamparia.MVC.Models.Categoria>
+
+@{
+    ViewBag.Title = "Indice";
+}
+
+<h2>Indice</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo", "Criar")
+</p>
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				Nome
+			</th>
+			<th>
+				Produtos
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.ActionLink("Editar", "Editar", new { id = item.CategoriaId }) |
+				@Html.ActionLink("Detalhes", "Detalhes", new { id= item.CategoriaId }) |
+				@Html.ActionLink("Excluir", "Excluir", new { id = item.CategoriaId })
+			</td>
+			<td>
+				@item.Nome
+			</td>
+			<td>
+				@(item.Produtos == null ? "None" : item.Produtos.Count.ToString())
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
+
+
