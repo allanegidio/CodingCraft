@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 using Estamparia.MVC.Models;
 
 namespace Estamparia.MVC.Controllers
@@ -16,24 +17,24 @@ namespace Estamparia.MVC.Controllers
         //
         // GET: /Categorias/
 
-        public ViewResult Indice()
+        public async Task<ViewResult> Indice()
         {
-            return View(context.Categorias.Include(categoria => categoria.Produtos).ToList());
+            return View(await context.Categorias.Include(categoria => categoria.Produtos).ToListAsync());
         }
 
         //
         // GET: /Categorias/Detalhes/{id}
 
-        public ViewResult Detalhes(System.Guid id)
+        public async Task<ViewResult> Detalhes(System.Guid id)
         {
-            Categoria categoria = context.Categorias.Single(x => x.CategoriaId == id);
+            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
             return View(categoria);
         }
 
         //
         // GET: /Categorias/Criar
 
-        public ActionResult Criar()
+        public async Task<ActionResult> Criar()
         {
             return View();
         } 
@@ -42,13 +43,13 @@ namespace Estamparia.MVC.Controllers
         // POST: /Categorias/Criar
 
         [HttpPost]
-        public ActionResult Criar(Categoria categoria)
+        public async Task<ActionResult> Criar(Categoria categoria)
         {
             if (ModelState.IsValid)
             {
                 categoria.CategoriaId = Guid.NewGuid();
                 context.Categorias.Add(categoria);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Indice));  
             }
 
@@ -58,9 +59,9 @@ namespace Estamparia.MVC.Controllers
         //
         // GET: /Categorias/Editar/{id}
  
-        public ActionResult Editar(System.Guid id)
+        public async Task<ActionResult> Editar(System.Guid id)
         {
-            Categoria categoria = context.Categorias.Single(x => x.CategoriaId == id);
+            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
             return View(categoria);
         }
 
@@ -68,12 +69,12 @@ namespace Estamparia.MVC.Controllers
         // POST: /Categorias/Editar/{id}
 
         [HttpPost]
-        public ActionResult Editar(Categoria categoria)
+        public async Task<ActionResult> Editar(Categoria categoria)
         {
             if (ModelState.IsValid)
             {
                 context.Entry(categoria).State = EntityState.Modified;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Indice));
             }
             return View(categoria);
@@ -82,9 +83,9 @@ namespace Estamparia.MVC.Controllers
         //
         // GET: /Categorias/Excluir/{id}
  
-        public ActionResult Excluir(System.Guid id)
+        public async Task<ActionResult> Excluir(System.Guid id)
         {
-            Categoria categoria = context.Categorias.Single(x => x.CategoriaId == id);
+            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
             return View(categoria);
         }
 
@@ -92,11 +93,11 @@ namespace Estamparia.MVC.Controllers
         // POST: /Categorias/Excluir/{id}
 
         [HttpPost, ActionName(nameof(Excluir))]
-        public ActionResult ConfirmarExclusao(System.Guid id)
+        public async Task<ActionResult> ConfirmarExclusao(System.Guid id)
         {
-            Categoria categoria = context.Categorias.Single(x => x.CategoriaId == id);
+            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
             context.Categorias.Remove(categoria);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Indice));
         }
 

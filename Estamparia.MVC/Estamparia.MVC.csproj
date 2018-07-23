@@ -193,7 +193,6 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,12 +326,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Produtos\Criar.cshtml" />
-    <Content Include="Views\Produtos\Editar.cshtml" />
-    <Content Include="Views\Produtos\Excluir.cshtml" />
-    <Content Include="Views\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\Produtos\Indice.cshtml" />
-    <Content Include="Views\Produtos\_CriarOuEditar.cshtml" />
     <Content Include="Views\Categorias\Criar.cshtml" />
     <Content Include="Views\Categorias\Editar.cshtml" />
     <Content Include="Views\Categorias\Excluir.cshtml" />

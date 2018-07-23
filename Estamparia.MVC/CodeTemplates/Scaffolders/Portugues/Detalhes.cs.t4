@@ -33,8 +33,8 @@ foreach (ModelProperty property in GetModelProperties(Model.ViewDataType, true))
     if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
 
-    <div class="display-label"><#= property.Name #></div>
-    <div class="display-field">@<#= property.ValueExpression #></div>
+    <div class="display-label">@Html.DisplayNameFor(model => model.<#= property.Name #>)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.<#= property.Name #>)</div>
 <#
     }
 }

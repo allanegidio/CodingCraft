@@ -39,7 +39,7 @@ foreach (ModelProperty property in properties) {
     if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
 			<th>
-				<#= property.Name #>
+				@Html.DisplayNameFor(model => model.<#= property.Name #>)
 			</th>
 <#
     }
@@ -68,7 +68,7 @@ foreach (ModelProperty property in properties) {
     if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
 			<td>
-				@<#= property.ValueExpression.Replace("Model.", "item.") #>
+				@Html.DisplayFor(model => item.<#= property.Name #>)
 			</td>
 <#
     }

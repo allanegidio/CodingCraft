@@ -14,10 +14,10 @@
 		<tr>
 			<th></th>
 			<th>
-				Nome
+				@Html.DisplayNameFor(model => model.Nome)
 			</th>
 			<th>
-				Produtos
+				@Html.DisplayNameFor(model => model.Produtos)
 			</th>
 		</tr>
 	</thead>
@@ -30,10 +30,10 @@
 				@Html.ActionLink("Excluir", "Excluir", new { id = item.CategoriaId })
 			</td>
 			<td>
-				@item.Nome
+				@Html.DisplayFor(model => item.Nome)
 			</td>
 			<td>
-				@(item.Produtos == null ? "None" : item.Produtos.Count.ToString())
+				@Html.DisplayFor(model => item.Produtos)
 			</td>
 		</tr>
 	}

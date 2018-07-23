@@ -10,11 +10,11 @@
 <fieldset>
     <legend>Categoria</legend>
 
-    <div class="display-label">Nome</div>
-    <div class="display-field">@Model.Nome</div>
+    <div class="display-label">@Html.DisplayNameFor(model => model.Nome)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Nome)</div>
 
-    <div class="display-label">Produtos</div>
-    <div class="display-field">@(Model.Produtos == null ? "None" : Model.Produtos.Count.ToString())</div>
+    <div class="display-label">@Html.DisplayNameFor(model => model.Produtos)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Produtos)</div>
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
