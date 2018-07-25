@@ -14,6 +14,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using System.Net;
 <# if(!string.IsNullOrEmpty(Model.ModelTypeNamespace)) { #>
 using <#= Model.ModelTypeNamespace #>;
 <# } #>
@@ -40,7 +41,7 @@ namespace <#= Model.ControllerNamespace #>
         //
         // GET: /<#= routingName #>/
 
-        public async Task<ViewResult> Indice()
+        public async Task<ActionResult> Indice()
         {
 <#
     var propertiesToInclude = relatedEntities.Select(relation => relation.LazyLoadingProperty).Where(x => x != null);
@@ -54,16 +55,27 @@ namespace <#= Model.ControllerNamespace #>
         //
         // GET: /<#= routingName #>/Detalhes/{id}
 
-        public async Task<ViewResult> Detalhes(<#= primaryKeyProperty.Type.AsString #> id)
+        public async Task<ActionResult> Detalhes(<#= primaryKeyProperty.Type.AsString #> id)
         {
+			 if (id == null)
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             <#= modelName #> <#= modelVariable #> = await context.<#= modelNamePlural #>.SingleAsync(x => x.<#= primaryKeyProperty.Name #> == id);
+
+			if (<#= modelVariable #> == null)
+				return HttpNotFound();
+
             return View(<#= modelVariable #>);
         }
 
         //
         // GET: /<#= routingName #>/Criar
 
+<# if(relatedEntities.Where(x => x.RelationType == RelationType.Parent).Count() > 0) { #>
         public async Task<ActionResult> Criar()
+<# } else { #>
+		public ActionResult Criar()
+<# } #>
         {
 <# foreach(var relatedEntity in relatedEntities.Where(x => x.RelationType == RelationType.Parent)) { #>
             ViewBag.<#= relatedEntity.RelationNamePlural #> = await context.<#= relatedEntity.RelatedEntityTypeNamePlural #>.ToListAsync();
@@ -88,6 +100,7 @@ namespace <#= Model.ControllerNamespace #>
                 context.<#= modelNamePlural #>.Add(<#= modelVariable #>);
 <# } #>
                 await context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Indice));  
             }
 
@@ -102,7 +115,14 @@ namespace <#= Model.ControllerNamespace #>
  
         public async Task<ActionResult> Editar(<#= primaryKeyProperty.Type.AsString #> id)
         {
+			if (id == null)
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             <#= modelName #> <#= modelVariable #> = await context.<#= modelNamePlural #>.SingleAsync(x => x.<#= primaryKeyProperty.Name #> == id);
+
+			if (<#= modelVariable #> == null)
+				return HttpNotFound();
+
 <# foreach(var relatedEntity in relatedEntities.Where(x => x.RelationType == RelationType.Parent)) { #>
             ViewBag.<#= relatedEntity.RelationNamePlural #> = await context.<#= relatedEntity.RelatedEntityTypeNamePlural #>.ToListAsync();
 <# } #>
@@ -124,6 +144,7 @@ namespace <#= Model.ControllerNamespace #>
                 context.Entry(<#= modelVariable #>).State = EntityState.Modified;
 <# } #>
                 await context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Indice));
             }
 <# foreach(var relatedEntity in relatedEntities.Where(x => x.RelationType == RelationType.Parent)) { #>
@@ -134,10 +155,16 @@ namespace <#= Model.ControllerNamespace #>
 
         //
         // GET: /<#= routingName #>/Excluir/{id}
- 
         public async Task<ActionResult> Excluir(<#= primaryKeyProperty.Type.AsString #> id)
         {
+			if (id == null)
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             <#= modelName #> <#= modelVariable #> = await context.<#= modelNamePlural #>.SingleAsync(x => x.<#= primaryKeyProperty.Name #> == id);
+
+			if (<#= modelVariable #> == null)
+				return HttpNotFound();
+
             return View(<#= modelVariable #>);
         }
 
@@ -154,6 +181,7 @@ namespace <#= Model.ControllerNamespace #>
             context.<#= modelNamePlural #>.Remove(<#= modelVariable #>);
 <# } #>
             await context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Indice));
         }
 

@@ -11,115 +11,119 @@ using Estamparia.MVC.Models;
 
 namespace Estamparia.MVC.Controllers
 {   
-    public class CategoriasController : Controller
+    public class ProdutosController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 
         //
-        // GET: /Categorias/
+        // GET: /Produtos/
 
         public async Task<ActionResult> Indice()
         {
-            return View(await context.Categorias.Include(categoria => categoria.Produtos).ToListAsync());
+            return View(await context.Produtos.Include(produto => produto.Categoria).ToListAsync());
         }
 
         //
-        // GET: /Categorias/Detalhes/{id}
+        // GET: /Produtos/Detalhes/{id}
 
         public async Task<ActionResult> Detalhes(System.Guid id)
         {
 			 if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
+            Produto produto = await context.Produtos.SingleAsync(x => x.ProdutoId == id);
 
-			if (categoria == null)
+			if (produto == null)
 				return HttpNotFound();
 
-            return View(categoria);
+            return View(produto);
         }
 
         //
-        // GET: /Categorias/Criar
+        // GET: /Produtos/Criar
 
-		public ActionResult Criar()
+        public async Task<ActionResult> Criar()
         {
+            ViewBag.Categorias = await context.Categorias.ToListAsync();
             return View();
         } 
 
         //
-        // POST: /Categorias/Criar
+        // POST: /Produtos/Criar
 
         [HttpPost]
-        public async Task<ActionResult> Criar(Categoria categoria)
+        public async Task<ActionResult> Criar(Produto produto)
         {
             if (ModelState.IsValid)
             {
-                categoria.CategoriaId = Guid.NewGuid();
-                context.Categorias.Add(categoria);
+                produto.ProdutoId = Guid.NewGuid();
+                context.Produtos.Add(produto);
                 await context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Indice));  
             }
 
-            return View(categoria);
+            ViewBag.Categorias = await context.Categorias.ToListAsync();
+            return View(produto);
         }
         
         //
-        // GET: /Categorias/Editar/{id}
+        // GET: /Produtos/Editar/{id}
  
         public async Task<ActionResult> Editar(System.Guid id)
         {
 			if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
+            Produto produto = await context.Produtos.SingleAsync(x => x.ProdutoId == id);
 
-			if (categoria == null)
+			if (produto == null)
 				return HttpNotFound();
 
-            return View(categoria);
+            ViewBag.Categorias = await context.Categorias.ToListAsync();
+            return View(produto);
         }
 
         //
-        // POST: /Categorias/Editar/{id}
+        // POST: /Produtos/Editar/{id}
 
         [HttpPost]
-        public async Task<ActionResult> Editar(Categoria categoria)
+        public async Task<ActionResult> Editar(Produto produto)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(categoria).State = EntityState.Modified;
+                context.Entry(produto).State = EntityState.Modified;
                 await context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Indice));
             }
-            return View(categoria);
+            ViewBag.Categorias = await context.Categorias.ToListAsync();
+            return View(produto);
         }
 
         //
-        // GET: /Categorias/Excluir/{id}
+        // GET: /Produtos/Excluir/{id}
         public async Task<ActionResult> Excluir(System.Guid id)
         {
 			if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
+            Produto produto = await context.Produtos.SingleAsync(x => x.ProdutoId == id);
 
-			if (categoria == null)
+			if (produto == null)
 				return HttpNotFound();
 
-            return View(categoria);
+            return View(produto);
         }
 
         //
-        // POST: /Categorias/Excluir/{id}
+        // POST: /Produtos/Excluir/{id}
 
         [HttpPost, ActionName(nameof(Excluir))]
         public async Task<ActionResult> ConfirmarExclusao(System.Guid id)
         {
-            Categoria categoria = await context.Categorias.SingleAsync(x => x.CategoriaId == id);
-            context.Categorias.Remove(categoria);
+            Produto produto = await context.Produtos.SingleAsync(x => x.ProdutoId == id);
+            context.Produtos.Remove(produto);
             await context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Indice));

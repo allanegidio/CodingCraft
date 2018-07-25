@@ -5,6 +5,7 @@ param(
     [string]$Project,
     [string]$CodeLanguage,
 	[string]$DbContextType,
+	[string]$DbContextPropName,
 	[string]$Area,
 	[string]$ViewScaffolder = "View",
 	[alias("MasterPage")]$Layout,
@@ -55,12 +56,12 @@ if (!$ModelType) {
 }
 Write-Host "Scaffolding $ControllerName..."
 
-if(!$DbContextType) { $DbContextType = [System.Text.RegularExpressions.Regex]::Replace((Get-Project $Project).Name, "[^a-zA-Z0-9]", "") + "Context" }
+if(!$DbContextType) { $DbContextType = "ApplicationDbContext" }
 if (!$NoChildItems) {
 	if ($Repository) {
 		Scaffold Repository -ModelType $foundModelType.FullName -DbContextType $DbContextType -Area $Area -Project $Project -CodeLanguage $CodeLanguage -Force:$overwriteFilesExceptController
 	} else {
-		$dbContextScaffolderResult = Scaffold DbContext -ModelType $foundModelType.FullName -DbContextType $DbContextType -Area $Area -Project $Project -CodeLanguage $CodeLanguage
+		$dbContextScaffolderResult = Scaffold PortuguesDbContext -ModelType $foundModelType.FullName -DbContextType $DbContextType -DbContextPropName $DbContextPropName -Area $Area -Project $Project -CodeLanguage $CodeLanguage
 		$foundDbContextType = $dbContextScaffolderResult.DbContextType
 		if (!$foundDbContextType) { return }
 	}
@@ -90,7 +91,7 @@ $controllerNamespace = [T4Scaffolding.Namespaces]::Normalize($defaultNamespace +
 $areaNamespace = if ($Area) { [T4Scaffolding.Namespaces]::Normalize($defaultNamespace + ".Areas.$Area") } else { $defaultNamespace }
 $dbContextNamespace = $foundDbContextType.Namespace.FullName
 $repositoriesNamespace = [T4Scaffolding.Namespaces]::Normalize($areaNamespace + ".Models")
-$modelTypePluralized = Get-PluralizedWord $foundModelType.Name
+$modelTypePluralized = if (!$DbContextPropName) { Get-PluralizedWord $foundModelType.Name } else { $DbContextPropName }
 $relatedEntities = [Array](Get-RelatedEntities $foundModelType.FullName -Project $project)
 if (!$relatedEntities) { $relatedEntities = @() }
 

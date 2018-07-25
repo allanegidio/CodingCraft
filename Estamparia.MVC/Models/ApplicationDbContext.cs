@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+
+
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Estamparia.MVC.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
-
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -17,5 +20,10 @@ namespace Estamparia.MVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Estamparia.MVC.Models.Produto> Produtos { get; set; }
+
+        public DbSet<Estamparia.MVC.Models.Categoria> Categorias { get; set; }
+
     }
 }

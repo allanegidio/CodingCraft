@@ -39,10 +39,10 @@ foreach (ModelProperty property in GetModelProperties(Model.ViewDataType, false)
 foreach (RelatedEntityInfo relation in ParentRelations) {
 #>
 <div class="editor-label">
-    <#= relation.RelationName #>
+    @Html.DisplayNameFor(model => model.<#= relation.RelationName #>)
 </div>
 <div class="editor-field">
-    @Html.DropDownListFor(model => model.<#= relation.RelationProperty.Name #>, ((IEnumerable<<#= relation.RelatedEntityType.FullName #>>)ViewBag.Possible<#= relation.RelationNamePlural #>).Select(option => new SelectListItem {
+    @Html.DropDownListFor(model => model.<#= relation.RelationProperty.Name #>, ((IEnumerable<<#= relation.RelatedEntityType.FullName #>>)ViewBag.<#= relation.RelationNamePlural #>).Select(option => new SelectListItem {
         Text = <#= GetValueExpression("option", relation.RelatedEntityType) #>, 
         Value = option.<#= relation.RelatedEntityPrimaryKeyName #>.ToString(),
         Selected = (Model != null) && (option.<#= relation.RelatedEntityPrimaryKeyName #> == Model.<#= relation.RelationProperty.Name #>)
@@ -94,7 +94,7 @@ List<ModelProperty> GetModelProperties(EnvDTE.CodeType typeInfo, bool includeUnb
 }
 
 // Change this list to include the names of properties that should be selected to represent an entity as a single string
-static string[] displayPropertyNames = new[] { "Name", "Title", "LastName", "Surname", "Subject", "Count" };
+static string[] displayPropertyNames = new[] { "Name", "Nome", "Title", "Titulo", "LastName", "Sobrenome", "Surname", "Subject", "Count", "Quantidade" };
 
 string GetValueExpression(string propertyExpression, EnvDTE.CodeType propertyType) {
 	if (propertyType != null) {
@@ -104,7 +104,7 @@ string GetValueExpression(string propertyExpression, EnvDTE.CodeType propertyTyp
 			return String.Format("({0} == null ? \"None\" : {0}.{1}{2})", propertyExpression, chosenSubproperty.Name, toStringSuffix);
 		}
 	}
-	return "Html.DisplayTextFor(_ => " + propertyExpression + ").ToString()";
+	return "Html.DisplayTextFor(_ => " + propertyExpression + ").ToString()";;
 }
 
 // Helper

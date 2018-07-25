@@ -1,0 +1,26 @@
+@model Estamparia.MVC.Models.Produto
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir</h2>
+
+<h3>Tem certeza que deseja excluir este registro?</h3>
+<fieldset>
+    <legend>Produto</legend>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Nome)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Nome)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Categoria)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Categoria)</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Confirmar Exclusão" /> |
+        @Html.ActionLink("Voltar para Listagem", "Indice")
+    </p>
+}
+
+

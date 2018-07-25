@@ -193,6 +193,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,7 +201,6 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\EstampariaMVCContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,15 +251,18 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\ControllerWithContext.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Portugues.ps1" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Criar.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Excluir.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Detalhes.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Editar.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\Indice.cs.t4" />
-    <Content Include="CodeTemplates\Scaffolders\Portugues\_CriarOuEditar.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Controller\ControllerWithContext.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\PortuguesTemplate.ps1" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\Criar.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\Excluir.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\Detalhes.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\Editar.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\Indice.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Views\_CriarOuEditar.cs.t4" />
     <Content Include="CodeTemplates\Scaffolders\Portugues\PortuguesViews.ps1" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Context\DbContext.cs.t4" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\PortuguesDbContext.ps1" />
+    <Content Include="CodeTemplates\Scaffolders\Portugues\Context\DbContextEntityMember.cs.t4" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -326,6 +329,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Produtos\Criar.cshtml" />
+    <Content Include="Views\Produtos\Editar.cshtml" />
+    <Content Include="Views\Produtos\Excluir.cshtml" />
+    <Content Include="Views\Produtos\Detalhes.cshtml" />
+    <Content Include="Views\Produtos\Indice.cshtml" />
+    <Content Include="Views\Produtos\_CriarOuEditar.cshtml" />
     <Content Include="Views\Categorias\Criar.cshtml" />
     <Content Include="Views\Categorias\Editar.cshtml" />
     <Content Include="Views\Categorias\Excluir.cshtml" />
