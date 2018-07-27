@@ -24,9 +24,7 @@
                         Text = f.Nome,
                         Value = f.FornecedorId.ToString(),
                         Selected = Model?.FornecedorId == f.FornecedorId
-                    }),
-                    "Selecione o Fornecedor",
-                    new { @class = "form-control" } )
+                    }), "Selecione o Fornecedor", new { @class = "form-control" })
 
                 @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
             </div>

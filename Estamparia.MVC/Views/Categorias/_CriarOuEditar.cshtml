@@ -2,11 +2,11 @@
 
 @* This partial view defines form fields that will appear when creating and editing entities *@
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.Nome)
-</div>
-<div class="editor-field">
-    @Html.EditorFor(model => model.Nome)
-    @Html.ValidationMessageFor(model => model.Nome)
+<div class="form-group">
+    @Html.LabelFor(model => model.Nome, new { @class = "col-md-2 control-label" })
+	<div class="col-md-10">
+		@Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+	</div>
 </div>
 

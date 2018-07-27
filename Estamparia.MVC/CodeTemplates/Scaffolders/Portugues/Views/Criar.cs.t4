@@ -28,7 +28,7 @@ if (!String.IsNullOrEmpty(Model.Layout)) {
 #>
 }
 
-<h2><#= Model.ViewName #></h2>
+<h1 class="display-4 mt-3"><#= Model.ViewName #></h1>
 
 <# if(Model.ReferenceScriptLibraries) { #>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
@@ -37,15 +37,15 @@ if (!String.IsNullOrEmpty(Model.Layout)) {
 <# } #>
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend><#= Model.ViewDataTypeName ?? String.Empty #></legend>
+    <div>
+        <h4><#= Model.ViewDataTypeName ?? String.Empty #></h4>
 
 		@Html.Partial("_CriarOuEditar", Model)
 
         <p>
-            <input type="submit" value="Criar" />
+            <input class="btn btn-primary active" type="submit" value="Criar" />
         </p>
-    </fieldset>
+    </div>
 }
 
 <div>

@@ -4,19 +4,19 @@
     ViewBag.Title = "Criar";
 }
 
-<h2>Criar</h2>
+<h1 class="display-4 mt-3">Criar</h1>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>Categoria</legend>
+    <div>
+        <h4>Categoria</h4>
 
 		@Html.Partial("_CriarOuEditar", Model)
 
         <p>
-            <input type="submit" value="Criar" />
+            <input class="btn btn-primary active" type="submit" value="Criar" />
         </p>
-    </fieldset>
+    </div>
 }
 
 <div>

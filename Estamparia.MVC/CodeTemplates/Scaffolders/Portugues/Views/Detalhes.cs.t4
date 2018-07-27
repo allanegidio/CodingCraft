@@ -24,31 +24,35 @@
 <# } #>
 }
 
-<h2><#= Model.ViewName #></h2>
+<h1 class="display-4 mt-3"><#= Model.ViewName #></h1>
 
-<fieldset>
-    <legend><#= Model.ViewDataTypeName ?? String.Empty #></legend>
+<div>
+	<h4 class="mt-3"><#= Model.ViewDataTypeName ?? String.Empty #></h4>
+	<hr />
+	<dl class="row">
 <#
 foreach (ModelProperty property in GetModelProperties(Model.ViewDataType, true)) {
     if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
-
-    <div class="display-label">@Html.DisplayNameFor(model => model.<#= property.Name #>)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.<#= property.Name #>)</div>
+		<dt class="col-sm-2 text-right">@Html.DisplayNameFor(model => model.<#= property.Name #>)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(model => model.<#= property.Name #>)</dd>
 <#
     }
 }
 #>
-</fieldset>
-<p>
+	</dl>
+	<p>
 <# if (!String.IsNullOrEmpty(Model.PrimaryKeyName)) { #>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.<#= Model.PrimaryKeyName #> }) |
-    @Html.ActionLink("Voltar para Listagem", "Indice")
+		@Html.ActionLink("Editar", "Editar", new { id = Model.<#= Model.PrimaryKeyName #> }) |
+		@Html.ActionLink("Voltar para Listagem", "Indice")
 <# } else { #>
-    @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Voltar para Listagem", "Indice")
+		@Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) |
+		@Html.ActionLink("Voltar para Listagem", "Indice")
 <# } #>
-</p>
+	</p>
+</div>
+
+
 
 
 <#+

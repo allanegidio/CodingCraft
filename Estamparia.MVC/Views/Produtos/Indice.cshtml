@@ -4,39 +4,39 @@
     ViewBag.Title = "Indice";
 }
 
-<h2>Indice</h2>
+<h2 class="display-4 mt-3">Indice</h2>
 
 <p>
-    @Html.ActionLink("Criar Novo", "Criar")
+    @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "btn btn-primary active"})
 </p>
-<table>
+<table class="table">
 	<thead>
 		<tr>
-			<th></th>
 			<th>
 				@Html.DisplayNameFor(model => model.Nome)
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Categoria)
 			</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var item in Model) {
 		<tr>
 			<td>
+				@Html.DisplayFor(model => item.Nome)
+			</td>
+			<td>
+				@Html.DisplayFor(model => item.Categoria.Nome)
+			</td>
+			<td>
 				@Html.ActionLink("Editar", "Editar", new { id = item.ProdutoId }) |
 				@Html.ActionLink("Detalhes", "Detalhes", new { id= item.ProdutoId }) |
 				@Html.ActionLink("Excluir", "Excluir", new { id = item.ProdutoId })
 			</td>
-			<td>
-				@Html.DisplayFor(model => item.Nome)
-			</td>
-			<td>
-				@Html.DisplayFor(model => item.Categoria)
-			</td>
 		</tr>
-	}
+		}
 	</tbody>
 </table>
 

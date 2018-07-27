@@ -24,15 +24,14 @@
 <# } #>
 }
 
-<h2><#= Model.ViewName #></h2>
+<h2 class="display-4 mt-3"><#= Model.ViewName #></h2>
 
 <p>
-    @Html.ActionLink("Criar Novo", "Criar")
+    @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "btn btn-primary active"})
 </p>
-<table>
+<table class="table">
 	<thead>
 		<tr>
-			<th></th>
 <#
 List<ModelProperty> properties = GetModelProperties(Model.ViewDataType, true);
 foreach (ModelProperty property in properties) {
@@ -45,11 +44,23 @@ foreach (ModelProperty property in properties) {
     }
 }
 #>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var item in Model) {
 		<tr>
+<#  
+foreach (ModelProperty property in properties) {
+    if (!property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+			<td>
+				@Html.DisplayFor(model => item.<#= property.Name #>)
+			</td>
+<#
+    }
+}
+#>
 <# if (!String.IsNullOrEmpty(Model.PrimaryKeyName)) { #>
 			<td>
 				@Html.ActionLink("Editar", "Editar", new { id = item.<#= Model.PrimaryKeyName #> }) |
@@ -63,19 +74,8 @@ foreach (ModelProperty property in properties) {
 				@Html.ActionLink("Excluir", "Excluir", new { /* id = item.PrimaryKey */ })
 			</td>
 <# } #>
-<#  
-foreach (ModelProperty property in properties) {
-    if (!property.IsPrimaryKey && !property.IsForeignKey) {
-#>
-			<td>
-				@Html.DisplayFor(model => item.<#= property.Name #>)
-			</td>
-<#
-    }
-}
-#>
 		</tr>
-	}
+		}
 	</tbody>
 </table>
 
