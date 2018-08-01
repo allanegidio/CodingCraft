@@ -8,33 +8,36 @@ namespace Estamparia.MVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery-validate/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/modernizr/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site-bootstrap.css"));
+            // Bundle of Bootstrap
+
+            bundles.Add(new ScriptBundle("~/bootstrap/js").Include(
+                      "~/Scripts/bootstrap/js/bootstrap.min.js",
+                      "~/Scripts/bootstrap/js/respond.min.js"));
+
+            bundles.Add(new StyleBundle("~/bootstrap/css").Include(
+                      "~/Content/bootstrap/css/bootstrap.min.css",
+                      "~/Content/bootstrap/site-bootstrap.css"));
 
             // Bundle of Zurb-Foundation
 
             bundles.Add(new StyleBundle("~/foundation/css").Include(
-                      "~/Content/zurb-foundation/dist/css/foundation.css",
-                      "~/Content/zurb-foundation/dist/site-foundation.css"));
+                      "~/Content/zurb-foundation/css/foundation.min.css",
+                      "~/Content/zurb-foundation/site-foundation.css"));
 
             bundles.Add(new ScriptBundle("~/foundation/js").Include(
-                     "~/Content/zurb-foundation/dist/js/foundation.js",
-                     "~/Content/zurb-foundation/dist/site-foundation.js"));
+                     "~/Scripts/zurb-foundation/js/foundation.min.js",
+                     "~/Scripts/zurb-foundation/site-foundation.js"));
 
             // Bundle of Ink
 
