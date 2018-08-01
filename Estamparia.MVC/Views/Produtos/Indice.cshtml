@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Indice";
+    Layout = "~/Views/Shared/_LayoutZurb.cshtml";
 }
 
-<h2 class="display-4 mt-3">Indice</h2>
+<h2 id="buceta">Indice</h2>
 
 <p>
     @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "btn btn-primary active"})
@@ -18,7 +19,7 @@
 			<th>
 				@Html.DisplayNameFor(model => model.Categoria)
 			</th>
-			<th>Actions</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,7 +29,7 @@
 				@Html.DisplayFor(model => item.Nome)
 			</td>
 			<td>
-				@Html.DisplayFor(model => item.Categoria.Nome)
+				@Html.DisplayFor(model => item.Categoria)
 			</td>
 			<td>
 				@Html.ActionLink("Editar", "Editar", new { id = item.ProdutoId }) |

@@ -44,7 +44,7 @@ foreach (ModelProperty property in properties) {
     }
 }
 #>
-			<th>Actions</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 	<tbody>

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Estamparia.MVC
 {
@@ -25,7 +24,20 @@ namespace Estamparia.MVC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site-bootstrap.css"));
+
+            // Bundle of Zurb-Foundation
+
+            bundles.Add(new StyleBundle("~/foundation/css").Include(
+                      "~/Content/zurb-foundation/dist/css/foundation.css",
+                      "~/Content/zurb-foundation/dist/site-foundation.css"));
+
+            bundles.Add(new ScriptBundle("~/foundation/js").Include(
+                     "~/Content/zurb-foundation/dist/js/foundation.js",
+                     "~/Content/zurb-foundation/dist/site-foundation.js"));
+
+            // Bundle of Ink
+
         }
     }
 }
