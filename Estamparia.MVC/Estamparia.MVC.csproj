@@ -305,10 +305,10 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.js" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -317,10 +317,10 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.js.map" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap-reboot.min.css.map" />
@@ -352,14 +352,14 @@
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery-validate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr\modernizr-2.8.3.js" />
-    <Content Include="Scripts\bootstrap\js\popper-utils.js" />
-    <Content Include="Scripts\bootstrap\js\popper-utils.min.js" />
-    <Content Include="Scripts\bootstrap\js\popper.js" />
-    <Content Include="Scripts\bootstrap\js\popper.min.js" />
-    <Content Include="Scripts\bootstrap\js\respond.js" />
-    <Content Include="Scripts\bootstrap\js\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\bootstrap\js\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\bootstrap\js\respond.min.js" />
+    <Content Include="Scripts\bootstrap\popper-utils.js" />
+    <Content Include="Scripts\bootstrap\popper-utils.min.js" />
+    <Content Include="Scripts\bootstrap\popper.js" />
+    <Content Include="Scripts\bootstrap\popper.min.js" />
+    <Content Include="Scripts\bootstrap\respond.js" />
+    <Content Include="Scripts\bootstrap\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\bootstrap\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\bootstrap\respond.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -402,10 +402,10 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
     <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap\js\popper.min.js.map" />
-    <Content Include="Scripts\bootstrap\js\popper.js.map" />
-    <Content Include="Scripts\bootstrap\js\popper-utils.min.js.map" />
-    <Content Include="Scripts\bootstrap\js\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap\popper.min.js.map" />
+    <Content Include="Scripts\bootstrap\popper.js.map" />
+    <Content Include="Scripts\bootstrap\popper-utils.min.js.map" />
+    <Content Include="Scripts\bootstrap\popper-utils.js.map" />
     <Content Include="Views\Categorias\Criar.cshtml" />
     <Content Include="Views\Categorias\Editar.cshtml" />
     <Content Include="Views\Categorias\Excluir.cshtml" />
@@ -430,7 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\zurb-foundation\js\foundation.d.ts" />
-    <TypeScriptCompile Include="Scripts\bootstrap\js\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\bootstrap\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -22,8 +22,8 @@ namespace Estamparia.MVC
             // Bundle of Bootstrap
 
             bundles.Add(new ScriptBundle("~/bootstrap/js").Include(
-                      "~/Scripts/bootstrap/js/bootstrap.min.js",
-                      "~/Scripts/bootstrap/js/respond.min.js"));
+                      "~/Scripts/bootstrap/bootstrap.min.js",
+                      "~/Scripts/bootstrap/respond.min.js"));
 
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
                       "~/Content/bootstrap/css/bootstrap.min.css",
