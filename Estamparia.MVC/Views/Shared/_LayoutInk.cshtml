@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/ink/css")
+</head>
+<body>
+    <div>
+        <nav class="ink-navigation">
+            <ul class="menu horizontal black">
+                <li class="heading"><a href="#">Estamparia</a></li>
+                <li>@Html.ActionLink("Categorias", "Indice", "Categorias", null, null)</li>
+                <li>@Html.ActionLink("Produtos", "Indice", "Produtos", null, null)</li>
+                <li>@Html.ActionLink("Estampas", "Indice", "Estampas", null, null)</li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/ink/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,27 @@
+@model Estamparia.MVC.Models.Estampa
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+
+
+
+<div class="ink-grid">
+    <h1 class="fw-700">Excluir</h1>
+
+    <h6>Tem certeza que deseja excluir este registro?</h6>
+    <h4>Estampa</h4>
+    <hr />
+    <dl>
+        <dt>@Html.DisplayNameFor(model => model.Nome)</dt>
+        <dd>@Html.DisplayFor(model => model.Nome)</dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        <p>
+            <input class="ink-button red" type="submit" value="Confirmar Exclusão" /> |
+            @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+        </p>
+    }
+</div>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Estamparia.MVC.Models
+namespace Estamparia.MVC.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

@@ -1,0 +1,32 @@
+@model Estamparia.MVC.Models.Estampa
+
+@{
+    ViewBag.Title = "Criar";
+}
+
+@using (Html.BeginForm("Criar", "Estampas", FormMethod.Post, new { @class= "ink-form" })) {
+    @Html.ValidationSummary(true)
+    <div class="ink-grid">
+
+        <h1 class="fw-700">Criar</h1>
+
+        <div class="column-group">
+            @Html.Partial("_CriarOuEditar", Model)
+        </div>
+		
+
+        <div class="column-group">
+            <p>
+                <input class="ink-button blue" type="submit" value="Criar" />
+            </p>
+
+            <div>
+                @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class="ink-button green"})
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Threading.Tasks;
-using System.Net;
 using Estamparia.MVC.Models;
+using System;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Estamparia.MVC.Controllers
-{   
+{
     public class ProdutosController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
@@ -20,7 +16,9 @@ namespace Estamparia.MVC.Controllers
 
         public async Task<ActionResult> Indice()
         {
-            return View(await context.Produtos.Include(produto => produto.Categoria).ToListAsync());
+            return View(await context.Produtos.Include(produto => produto.Categoria)
+                .Include(produto => produto.Tamanho)
+                .Include(produto => produto.Gola).ToListAsync());
         }
 
         //
@@ -45,6 +43,9 @@ namespace Estamparia.MVC.Controllers
         public async Task<ActionResult> Criar()
         {
             ViewBag.Categorias = await context.Categorias.ToListAsync();
+            ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
+            ViewBag.Golas = await context.Golas.ToListAsync();
+
             return View();
         } 
 
@@ -64,6 +65,9 @@ namespace Estamparia.MVC.Controllers
             }
 
             ViewBag.Categorias = await context.Categorias.ToListAsync();
+            ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
+            ViewBag.Golas = await context.Golas.ToListAsync();
+
             return View(produto);
         }
         
@@ -81,6 +85,9 @@ namespace Estamparia.MVC.Controllers
 				return HttpNotFound();
 
             ViewBag.Categorias = await context.Categorias.ToListAsync();
+            ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
+            ViewBag.Golas = await context.Golas.ToListAsync();
+
             return View(produto);
         }
 
@@ -97,7 +104,11 @@ namespace Estamparia.MVC.Controllers
 
                 return RedirectToAction(nameof(Indice));
             }
+
             ViewBag.Categorias = await context.Categorias.ToListAsync();
+            ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
+            ViewBag.Golas = await context.Golas.ToListAsync();
+
             return View(produto);
         }
 

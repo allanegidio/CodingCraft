@@ -1,0 +1,51 @@
+@model IEnumerable<Estamparia.MVC.Models.Estampa>
+
+@{
+    ViewBag.Title = "Indice";
+}
+
+
+
+
+
+<div class="ink-grid">
+    <div class="column-group">
+        <div class="all-100">
+            <h1 class="fw-700">Indice</h1>
+
+            <p>
+                @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "ink-button blue" })
+            </p>
+
+            <table class="ink-table">
+                <thead>
+                    <tr>
+                        <th class="align-left">
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th class="align-left">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.Nome)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.EstampaId }) |
+                                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.EstampaId }) |
+                                @Html.ActionLink("Excluir", "Excluir", new { id = item.EstampaId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+

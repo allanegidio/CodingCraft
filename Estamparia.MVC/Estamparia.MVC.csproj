@@ -191,20 +191,33 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EstampasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Migrations\201808272028322_PopulandoTabelaGolas.cs" />
+    <Compile Include="Migrations\201808272028322_PopulandoTabelaGolas.Designer.cs">
+      <DependentUpon>201808272028322_PopulandoTabelaGolas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808272029132_PopulandoTabelaTamanhos.cs" />
+    <Compile Include="Migrations\201808272029132_PopulandoTabelaTamanhos.Designer.cs">
+      <DependentUpon>201808272029132_PopulandoTabelaTamanhos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Estampa.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Gola.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Tamanho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProdutoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\css\bootstrap-grid.css" />
@@ -235,6 +248,7 @@
     <Content Include="Content\ink\css\ink.css" />
     <Content Include="Content\ink\css\ink.min.css" />
     <Content Include="Content\ink\css\quick-start.css" />
+    <Content Include="Content\ink\css\site-ink.css" />
     <Content Include="Content\ink\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\ink\icon.png" />
     <Content Include="Content\ink\img\favicon.ico" />
@@ -533,9 +547,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutBootstrap.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Indice.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -565,6 +576,19 @@
     <Content Include="Scripts\bootstrap\popper-utils.min.js.map" />
     <Content Include="Scripts\bootstrap\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutZurb.cshtml" />
+    <Content Include="Views\Shared\_LayoutInk.cshtml" />
+    <Content Include="Views\Categorias\Criar.cshtml" />
+    <Content Include="Views\Categorias\Editar.cshtml" />
+    <Content Include="Views\Categorias\Excluir.cshtml" />
+    <Content Include="Views\Categorias\Detalhes.cshtml" />
+    <Content Include="Views\Categorias\Indice.cshtml" />
+    <Content Include="Views\Categorias\_CriarOuEditar.cshtml" />
+    <Content Include="Views\Estampas\Criar.cshtml" />
+    <Content Include="Views\Estampas\Editar.cshtml" />
+    <Content Include="Views\Estampas\Excluir.cshtml" />
+    <Content Include="Views\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\Estampas\Indice.cshtml" />
+    <Content Include="Views\Estampas\_CriarOuEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -580,6 +604,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808272028322_PopulandoTabelaGolas.resx">
+      <DependentUpon>201808272028322_PopulandoTabelaGolas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808272029132_PopulandoTabelaTamanhos.resx">
+      <DependentUpon>201808272029132_PopulandoTabelaTamanhos.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
