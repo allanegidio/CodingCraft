@@ -8,7 +8,7 @@ param(
 	[string]$DbContextPropName,
 	[string]$Area,
 	[string]$ViewScaffolder = "View",
-	[alias("MasterPage")]$Layout,
+	[alias("MasterPage")]$Layout = "~/Views/Shared/_LayoutBootstrap.cshtml",
  	[alias("ContentPlaceholderIDs")][string[]]$SectionNames,
 	[alias("PrimaryContentPlaceholderID")][string]$PrimarySectionName,
 	[switch]$ReferenceScriptLibraries = $false,
@@ -61,7 +61,7 @@ if (!$NoChildItems) {
 	if ($Repository) {
 		Scaffold Repository -ModelType $foundModelType.FullName -DbContextType $DbContextType -Area $Area -Project $Project -CodeLanguage $CodeLanguage -Force:$overwriteFilesExceptController
 	} else {
-		$dbContextScaffolderResult = Scaffold PortuguesDbContext -ModelType $foundModelType.FullName -DbContextType $DbContextType -DbContextPropName $DbContextPropName -Area $Area -Project $Project -CodeLanguage $CodeLanguage
+		$dbContextScaffolderResult = Scaffold BootstrapDbContext -ModelType $foundModelType.FullName -DbContextType $DbContextType -DbContextPropName $DbContextPropName -Area $Area -Project $Project -CodeLanguage $CodeLanguage
 		$foundDbContextType = $dbContextScaffolderResult.DbContextType
 		if (!$foundDbContextType) { return }
 	}
@@ -115,6 +115,6 @@ Add-ProjectItemViaTemplate $outputPath -Template $templateName -Model @{
 if (!$NoChildItems) {
 	$controllerNameWithoutSuffix = [System.Text.RegularExpressions.Regex]::Replace($ControllerName, "Controller$", "", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
 	if ($ViewScaffolder) {
-		Scaffold PortuguesViews -ViewScaffolder $ViewScaffolder -Controller $controllerNameWithoutSuffix -ModelType $foundModelType.FullName -Area $Area -Layout $Layout -SectionNames $SectionNames -PrimarySectionName $PrimarySectionName -ReferenceScriptLibraries:$ReferenceScriptLibraries -Project $Project -CodeLanguage $CodeLanguage -Force:$overwriteFilesExceptController
+		Scaffold BootstrapViews -ViewScaffolder $ViewScaffolder -Controller $controllerNameWithoutSuffix -ModelType $foundModelType.FullName -Area $Area -Layout $Layout -SectionNames $SectionNames -PrimarySectionName $PrimarySectionName -ReferenceScriptLibraries:$ReferenceScriptLibraries -Project $Project -CodeLanguage $CodeLanguage -Force:$overwriteFilesExceptController
 	}
 }

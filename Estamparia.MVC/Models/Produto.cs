@@ -23,11 +23,14 @@ namespace Estamparia.MVC.Models
         [StringLength(100)]
         public string Nome { get; set; }
 
+        [Required]
         public string Cor { get; set; }
 
+        [Required]
         [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
 
+        [Required]
         public int Estoque { get; set; }
 
         public virtual Tamanho Tamanho { get; set; }

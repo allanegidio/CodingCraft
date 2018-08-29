@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/ink/css")
+    @Scripts.Render("~/ink/js")
 </head>
 <body>
     <div>
@@ -20,7 +21,6 @@
     <div>
         @RenderBody()
     </div>
-    @Scripts.Render("~/ink/js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

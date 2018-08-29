@@ -9,6 +9,9 @@ namespace Estamparia.MVC.Models
         [Key]
         public int EstampaId { get; set; }
 
+        [Required]
+        [StringLength(200)]
+        [Index("IX_Produtos_Nome", IsUnique = true)]
         public string Nome { get; set; }
     }
 }

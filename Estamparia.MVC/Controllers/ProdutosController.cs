@@ -16,9 +16,7 @@ namespace Estamparia.MVC.Controllers
 
         public async Task<ActionResult> Indice()
         {
-            return View(await context.Produtos.Include(produto => produto.Categoria)
-                .Include(produto => produto.Tamanho)
-                .Include(produto => produto.Gola).ToListAsync());
+            return View(await context.Produtos.Include(produto => produto.Categoria).Include(produto => produto.Tamanho).Include(produto => produto.Gola).Include(produto => produto.Estampa).ToListAsync());
         }
 
         //
@@ -45,7 +43,7 @@ namespace Estamparia.MVC.Controllers
             ViewBag.Categorias = await context.Categorias.ToListAsync();
             ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
             ViewBag.Golas = await context.Golas.ToListAsync();
-
+            ViewBag.Estampas = await context.Estampas.ToListAsync();
             return View();
         } 
 
@@ -67,7 +65,7 @@ namespace Estamparia.MVC.Controllers
             ViewBag.Categorias = await context.Categorias.ToListAsync();
             ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
             ViewBag.Golas = await context.Golas.ToListAsync();
-
+            ViewBag.Estampas = await context.Estampas.ToListAsync();
             return View(produto);
         }
         
@@ -87,7 +85,7 @@ namespace Estamparia.MVC.Controllers
             ViewBag.Categorias = await context.Categorias.ToListAsync();
             ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
             ViewBag.Golas = await context.Golas.ToListAsync();
-
+            ViewBag.Estampas = await context.Estampas.ToListAsync();
             return View(produto);
         }
 
@@ -104,11 +102,10 @@ namespace Estamparia.MVC.Controllers
 
                 return RedirectToAction(nameof(Indice));
             }
-
             ViewBag.Categorias = await context.Categorias.ToListAsync();
             ViewBag.Tamanhos = await context.Tamanhos.ToListAsync();
             ViewBag.Golas = await context.Golas.ToListAsync();
-
+            ViewBag.Estampas = await context.Estampas.ToListAsync();
             return View(produto);
         }
 

@@ -42,11 +42,13 @@ namespace Estamparia.MVC
             // Bundle of Ink
             bundles.Add(new StyleBundle("~/ink/css").Include(
                 "~/Content/ink/css/ink.min.css",
+                "~/Content/ink/css/font-awesome.min.css",
                 "~/Content/ink/css/site-ink.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/ink/js").Include(
-                "~/Content/ink/js/ink-all.min.js"
+                "~/Content/ink/js/ink-all.min.js",
+                "~/Content/ink/js/autoload.min.js"
                 ));
 
         }
