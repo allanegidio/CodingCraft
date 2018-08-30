@@ -24,61 +24,68 @@
 <# } #>
 }
 
-<h2 class="display-4 mt-3"><#= Model.ViewName #></h2>
+<div class="column-group">
+    <div class="all-100">
+        <h1 class="fw-900"><#= Model.ViewName #></h1>
 
-<p>
-    @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "btn btn-primary active"})
-</p>
-<table class="table">
-	<thead>
-		<tr>
+        <p>
+            @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "ink-button blue" })
+        </p>
+
+        <table class="ink-table">
+			<thead>
+				<tr>
 <#
 List<ModelProperty> properties = GetModelProperties(Model.ViewDataType, true);
 foreach (ModelProperty property in properties) {
     if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
-			<th>
-				@Html.DisplayNameFor(model => model.<#= property.Name #>)
-			</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.<#= property.Name #>)
+					</th>
 <#
     }
 }
 #>
-			<th>Ações</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model) {
-		<tr>
+					<th class="align-left">
+						Ações
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model) 
+				{
+					<tr>
 <#  
-foreach (ModelProperty property in properties) {
-    if (!property.IsPrimaryKey && !property.IsForeignKey) {
-#>
-			<td>
-				@Html.DisplayFor(model => item.<#= property.Name #>)
-			</td>
+		foreach (ModelProperty property in properties) {
+			if (!property.IsPrimaryKey && !property.IsForeignKey) {
+		#>
+						<td>
+							@Html.DisplayFor(model => item.<#= property.Name #>)
+						</td>
 <#
-    }
-}
-#>
-<# if (!String.IsNullOrEmpty(Model.PrimaryKeyName)) { #>
-			<td>
-				@Html.ActionLink("Editar", "Editar", new { id = item.<#= Model.PrimaryKeyName #> }) |
-				@Html.ActionLink("Detalhes", "Detalhes", new { id= item.<#= Model.PrimaryKeyName #> }) |
-				@Html.ActionLink("Excluir", "Excluir", new { id = item.<#= Model.PrimaryKeyName #> })
-			</td>
-<# } else { #>
-			<td>
-				@Html.ActionLink("Editar", "Editar", new { /* id = item.PrimaryKey */ }) |
-				@Html.ActionLink("Detalhes", "Detalhes", new { /* id = item.PrimaryKey */ }) |
-				@Html.ActionLink("Excluir", "Excluir", new { /* id = item.PrimaryKey */ })
-			</td>
-<# } #>
-		</tr>
+			}
 		}
-	</tbody>
-</table>
-
+		#>
+<# if (!String.IsNullOrEmpty(Model.PrimaryKeyName)) { #>
+						<td>
+							@Html.ActionLink("Editar", "Editar", new { id = item.<#= Model.PrimaryKeyName #> }) |
+							@Html.ActionLink("Detalhes", "Detalhes", new { id= item.<#= Model.PrimaryKeyName #> }) |
+							@Html.ActionLink("Excluir", "Excluir", new { id = item.<#= Model.PrimaryKeyName #> })
+						</td>
+<# } else { #>
+						<td>
+							@Html.ActionLink("Editar", "Editar", new { /* id = item.PrimaryKey */ }) |
+							@Html.ActionLink("Detalhes", "Detalhes", new { /* id = item.PrimaryKey */ }) |
+							@Html.ActionLink("Excluir", "Excluir", new { /* id = item.PrimaryKey */ })
+						</td>
+<# } #>
+					</tr>
+				}
+			</tbody>
+        </table>
+    </div>
+</div>
 
 <#+
 // Describes the information about a property on the model

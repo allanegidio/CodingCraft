@@ -8,19 +8,22 @@
     @Scripts.Render("~/ink/js")
 </head>
 <body>
-    <div>
-        <nav class="ink-navigation">
-            <ul class="menu horizontal black">
-                <li class="heading"><a href="#">Estamparia</a></li>
-                <li>@Html.ActionLink("Categorias", "Indice", "Categorias", null, null)</li>
-                <li>@Html.ActionLink("Produtos", "Indice", "Produtos", null, null)</li>
-                <li>@Html.ActionLink("Estampas", "Indice", "Estampas", null, null)</li>
-            </ul>
-        </nav>
+    <div class="ink-grid">
+        <header>
+            <h1>Estamparia</h1>
+            <nav class="ink-navigation">
+                <ul class="menu horizontal black">
+                    <li>@Html.ActionLink("Categorias", "Indice", "Categorias", null, null)</li>
+                    <li>@Html.ActionLink("Produtos", "Indice", "Produtos", null, null)</li>
+                    <li>@Html.ActionLink("Estampas", "Indice", "Estampas", null, null)</li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="column-group vertical-space">
+            @RenderBody()
+            @RenderSection("scripts", required: false)
+        </div>
     </div>
-    <div>
-        @RenderBody()
-    </div>
-    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -43,7 +43,7 @@
 <div class="control-group required">
     @Html.LabelFor(model => model.Tamanho)
 	<div class="control">
-		@Html.DropDownListFor(model => model.TamanhoId, ((IEnumerable<Estamparia.MVC.Models.Tamanho>)ViewBag.Tamanhos).Select(option => new SelectListItem {
+		@Html.DropDownListFor(model => model.TamanhoId, ((IEnumerable<Estamparia.MVC.Models.Tamanho>)ViewBag.Tamanhoes).Select(option => new SelectListItem {
 			Text = (option == null ? "None" : option.Nome), 
 			Value = option.TamanhoId.ToString(),
 			Selected = (Model != null) && (option.TamanhoId == Model.TamanhoId)

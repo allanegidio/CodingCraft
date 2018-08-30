@@ -24,32 +24,41 @@
 <# } #>
 }
 
-<h1 class="display-4 mt-3"><#= Model.ViewName #></h1>
-
 <# if(Model.ReferenceScriptLibraries) { #>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 <# } #>
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-    <div>
-        <h4><#= Model.ViewDataTypeName ?? String.Empty #></h4>
 
+@using (Html.BeginForm("<#= Model.ViewName #>", "<#= Model.Controller #>", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
+{
+	@Html.ValidationSummary(false)
+
+	<h1 class="fw-900"><#= Model.ViewName #></h1>
+
+	<div class="column-group vertical-gutters">
+		<div class="all-50 small-100 tiny-100">
+            <div class="column-group">
 <# foreach (ModelProperty property in GetModelProperties(viewDataType, false).Where(x => x.IsPrimaryKey)) { #>
-        @Html.HiddenFor(model => model.<#= property.Name #>)
+					@Html.HiddenFor(model => model.<#= property.Name #>)
 <# } #>
-		@Html.Partial("_CriarOuEditar", Model)
-
-        <p>
-            <input class="btn btn-primary active" type="submit" value="Salvar" />
-        </p>
-    </div>
+				<fieldset>
+					<legend><#= Model.ViewDataTypeName ?? String.Empty #></legend>
+					@Html.Partial("_CriarOuEditar", Model)
+				</fieldset>
+            </div>
+        </div>
+		<div class="all-100 small-100 tiny-100">
+            <div class="column-group vertical-padding">
+                <p>
+                    <input class="ink-button blue" type="submit" value="Salvar" /> |
+                    @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+                </p>
+            </div>
+        </div>
+	</div>
 }
 
-<div>
-    @Html.ActionLink("Voltar para Listagem", "Indice")
-</div>
 <#+
 // Describes the information about a property on the model
 class ModelProperty {

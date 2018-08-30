@@ -24,31 +24,46 @@
 <# } #>
 }
 
-<h1 class="display-4 mt-3"><#= Model.ViewName #></h1>
+<div class="column-group">
+    <div class="all-100 small-100 tiny-100">
+        <h1 class="fw-900"><#= Model.ViewName #></h1>
 
-<h6 class="mt-1">Tem certeza que deseja excluir este registro?</h6>
-<div>
-	<h4 class="mt-3"><#= Model.ViewDataTypeName ?? String.Empty #></h4>
-	<hr />
-    <dl class="row">
+        <h6>Tem certeza que deseja excluir este registro?</h6>
+        <h4><#= Model.ViewDataTypeName ?? String.Empty #></h4>
+        <hr />
+
+        <div class="control-group all-50 small-100 tiny-100">
+            <div class="column-group">
 <#
 foreach (ModelProperty property in GetModelProperties(Model.ViewDataType, true)) {
-    if (!property.IsPrimaryKey && !property.IsForeignKey) {
+if (!property.IsPrimaryKey && !property.IsForeignKey) {
 #>
-		<dt class="col-sm-2 text-right">@Html.DisplayNameFor(model => model.<#= property.Name #>)</dt>
-		<dd class="col-sm-10">@Html.DisplayFor(model => model.<#= property.Name #>)</dd>
+				<div class="fw-900 all-20">
+					@Html.DisplayNameFor(model => model.<#= property.Name #>)
+				</div>
+				<div class="all-80">
+					@Html.DisplayFor(model => model.<#= property.Name #>)
+				</div>
 <#
-    }
+}
 }
 #>
-    </dl>
-	@using (Html.BeginForm()) {
-		<p>
-			<input class="btn btn-danger" type="submit" value="Confirmar Exclusão" /> |
-			@Html.ActionLink("Voltar para Listagem", "Indice")
-		</p>
-	}
+            </div>
+        </div>
+    </div>
 </div>
+<div class="column-group vertical-padding">
+    <div class="all-100 small-100 tiny-100">
+        @using (Html.BeginForm())
+        {
+            <p>
+                <input class="ink-button red" type="submit" value="Confirmar Exclusão" /> |
+                @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+            </p>
+        }
+    </div>
+</div>
+
 <#+
 // Describes the information about a property on the model
 class ModelProperty {

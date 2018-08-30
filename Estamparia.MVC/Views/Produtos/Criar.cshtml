@@ -5,31 +5,30 @@
     Layout = "~/Views/Shared/_LayoutInk.cshtml";
 }
 
-<div class="ink-grid">
-	@using (Html.BeginForm("Criar", "Produtos", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
-	{
-		@Html.ValidationSummary(true)
 
-		<h1 class="fw-700">Criar</h1>
+@using (Html.BeginForm("Criar", "Produtos", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
+{
+	@Html.ValidationSummary(false)
 
-		<div class="column-group vertical-gutters">
-			<div class="all-50 small-100 tiny-100">
-                <div class="column-group">
-					<fieldset>
-						<legend>Produto</legend>
-						@Html.Partial("_CriarOuEditar", Model)
-					</fieldset>
-                </div>
+	<h1 class="fw-900">Criar</h1>
+
+	<div class="column-group vertical-gutters">
+		<div class="all-50 small-100 tiny-100">
+            <div class="column-group">
+				<fieldset>
+					<legend>Produto</legend>
+					@Html.Partial("_CriarOuEditar", Model)
+				</fieldset>
             </div>
-			<div class="all-100 small-100 tiny-100">
-                <div class="column-group">
-                    <p>
-                        <input class="ink-button blue" type="submit" value="Criar" /> |
-                        @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
-                    </p>
-                </div>
+        </div>
+		<div class="all-100 small-100 tiny-100">
+            <div class="column-group vertical-padding">
+                <p>
+                    <input class="ink-button blue" type="submit" value="Criar" /> |
+                    @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+                </p>
             </div>
-		</div>
-	}
-</div>
+        </div>
+	</div>
+}
 

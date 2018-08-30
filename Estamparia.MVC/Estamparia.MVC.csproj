@@ -589,24 +589,24 @@
     <Content Include="Scripts\bootstrap\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutZurb.cshtml" />
     <Content Include="Views\Shared\_LayoutInk.cshtml" />
+    <Content Include="Views\Produtos\Criar.cshtml" />
+    <Content Include="Views\Produtos\Editar.cshtml" />
+    <Content Include="Views\Produtos\Excluir.cshtml" />
+    <Content Include="Views\Produtos\Detalhes.cshtml" />
+    <Content Include="Views\Produtos\Indice.cshtml" />
+    <Content Include="Views\Produtos\_CriarOuEditar.cshtml" />
+    <Content Include="Views\Estampas\Criar.cshtml" />
+    <Content Include="Views\Estampas\Editar.cshtml" />
+    <Content Include="Views\Estampas\Excluir.cshtml" />
+    <Content Include="Views\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\Estampas\Indice.cshtml" />
+    <Content Include="Views\Estampas\_CriarOuEditar.cshtml" />
     <Content Include="Views\Categorias\Criar.cshtml" />
     <Content Include="Views\Categorias\Editar.cshtml" />
     <Content Include="Views\Categorias\Excluir.cshtml" />
     <Content Include="Views\Categorias\Detalhes.cshtml" />
     <Content Include="Views\Categorias\Indice.cshtml" />
     <Content Include="Views\Categorias\_CriarOuEditar.cshtml" />
-    <Content Include="Views\Estampas\Editar.cshtml" />
-    <Content Include="Views\Estampas\Excluir.cshtml" />
-    <Content Include="Views\Estampas\Detalhes.cshtml" />
-    <Content Include="Views\Estampas\Indice.cshtml" />
-    <Content Include="Views\Produtos\Editar.cshtml" />
-    <Content Include="Views\Produtos\Excluir.cshtml" />
-    <Content Include="Views\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\Produtos\Indice.cshtml" />
-    <Content Include="Views\Estampas\Criar.cshtml" />
-    <Content Include="Views\Estampas\_CriarOuEditar.cshtml" />
-    <Content Include="Views\Produtos\Criar.cshtml" />
-    <Content Include="Views\Produtos\_CriarOuEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

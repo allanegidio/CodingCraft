@@ -33,33 +33,32 @@ if (!String.IsNullOrEmpty(Model.Layout)) {
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 <# } #>
-<div class="ink-grid">
-	@using (Html.BeginForm("<#= Model.ViewName #>", "<#= Model.Controller #>", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
-	{
-		@Html.ValidationSummary(true)
 
-		<h1 class="fw-700"><#= Model.ViewName #></h1>
+@using (Html.BeginForm("<#= Model.ViewName #>", "<#= Model.Controller #>", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
+{
+	@Html.ValidationSummary(false)
 
-		<div class="column-group vertical-gutters">
-			<div class="all-50 small-100 tiny-100">
-                <div class="column-group">
-					<fieldset>
-						<legend><#= Model.ViewDataTypeName ?? String.Empty #></legend>
-						@Html.Partial("_CriarOuEditar", Model)
-					</fieldset>
-                </div>
+	<h1 class="fw-900"><#= Model.ViewName #></h1>
+
+	<div class="column-group vertical-gutters">
+		<div class="all-50 small-100 tiny-100">
+            <div class="column-group">
+				<fieldset>
+					<legend><#= Model.ViewDataTypeName ?? String.Empty #></legend>
+					@Html.Partial("_CriarOuEditar", Model)
+				</fieldset>
             </div>
-			<div class="all-100 small-100 tiny-100">
-                <div class="column-group">
-                    <p>
-                        <input class="ink-button blue" type="submit" value="Criar" /> |
-                        @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
-                    </p>
-                </div>
+        </div>
+		<div class="all-100 small-100 tiny-100">
+            <div class="column-group vertical-padding">
+                <p>
+                    <input class="ink-button blue" type="submit" value="Criar" /> |
+                    @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+                </p>
             </div>
-		</div>
-	}
-</div>
+        </div>
+	</div>
+}
 
 <#+
 // Describes the information about a property on the model
