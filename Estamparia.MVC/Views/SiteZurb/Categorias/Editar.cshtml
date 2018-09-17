@@ -1,0 +1,33 @@
+@model Estamparia.MVC.Models.Categoria
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutZurb.cshtml";
+}
+
+
+@using (Html.BeginForm("Editar", "Categorias", FormMethod.Post, new { novalidate = "", data_abide = "" })) 
+{
+	@Html.ValidationSummary(false)
+
+	<div class="grid-x grid-padding-x">
+
+		<div class="cell">
+			<h1>Editar</h1>
+			<h4>Categoria</h4>
+			<hr />
+		</div>
+        <div class="cell large-6 medium-8 small-10">
+			@Html.HiddenFor(model => model.CategoriaId)
+			@Html.Partial("_CriarOuEditar", Model)
+        </div>
+		<div class="cell">
+            <br />
+            <p>
+                <input class="button primary" type="submit" value="Salvar" /> |
+                @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "button secondary" })
+            </p>
+        </div>
+	</div>
+}
+

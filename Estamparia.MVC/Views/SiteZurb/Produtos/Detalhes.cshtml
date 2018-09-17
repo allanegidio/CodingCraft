@@ -1,0 +1,73 @@
+@model Estamparia.MVC.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutZurb.cshtml";
+}
+
+<div class="grid-x grid-margin-y grid-padding-x">
+	<div class="cell">
+		<h1>Detalhes</h1>
+
+		<h4>Produto</h4>
+		<hr />
+
+		<dl>
+			<dt>
+				@Html.DisplayNameFor(model => model.Nome)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Nome)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Cor)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Cor)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Preco)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Preco)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Estoque)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Estoque)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Tamanho)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Tamanho)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Gola)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Gola)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Categoria)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Categoria)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Estampa)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Estampa)
+			</dd>
+		</dl>
+	</div>
+
+	<div class="cell">
+		<p>
+			@Html.ActionLink("Editar", "Editar", null, new { id = Model.ProdutoId, @class = "button primary" }) |
+			@Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "button secondary" })
+		</p>
+	</div>
+</div>

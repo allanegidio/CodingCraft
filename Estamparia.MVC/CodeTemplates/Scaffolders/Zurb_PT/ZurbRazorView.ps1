@@ -23,7 +23,8 @@ if ($ModelType) {
 }
 
 # Decide where to put the output
-$outputFolderName = Join-Path Views/SiteInk $Controller
+$outputFolderName = Join-Path Views/SiteZurb $Controller
+
 if ($Area) {
 	# We don't create areas here, so just ensure that if you specify one, it already exists
 	$areaPath = Join-Path Areas $Area

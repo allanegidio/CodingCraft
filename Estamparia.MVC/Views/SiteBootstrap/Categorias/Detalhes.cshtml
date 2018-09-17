@@ -1,0 +1,27 @@
+@model Estamparia.MVC.Models.Categoria
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h1 class="display-4 mt-3">Detalhes</h1>
+
+<div>
+	<h4 class="mt-3">Categoria</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2 text-right">@Html.DisplayNameFor(model => model.Nome)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(model => model.Nome)</dd>
+		<dt class="col-sm-2 text-right">@Html.DisplayNameFor(model => model.Produtos)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(model => model.Produtos)</dd>
+	</dl>
+	<p>
+		@Html.ActionLink("Editar", "Editar", new { id = Model.CategoriaId }) |
+		@Html.ActionLink("Voltar para Listagem", "Indice")
+	</p>
+</div>
+
+
+
+
