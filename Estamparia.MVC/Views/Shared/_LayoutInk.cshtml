@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Estamparia.MVC.ViewModels
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -16,14 +18,28 @@
                     <li>@Html.ActionLink("Categorias", "Indice", "Categorias", null, null)</li>
                     <li>@Html.ActionLink("Produtos", "Indice", "Produtos", null, null)</li>
                     <li>@Html.ActionLink("Estampas", "Indice", "Estampas", null, null)</li>
+                    <li id="layoutHandler">
+                        @Html.Partial("_LayoutHandler", new LayoutViewModel())
+                    </li>
                 </ul>
             </nav>
         </header>
-        
+
         <div class="column-group vertical-space">
             @RenderBody()
-            @RenderSection("scripts", required: false)
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#LayoutName").change(function (e) {
+            var layouts = document.getElementById("LayoutName");
+            var currentLayout = layouts.selectedIndex;
+            var layoutName = layouts.options[currentLayout].text;
+
+            document.cookie = `LayoutName = ${layoutName}`;
+            window.location.reload();
+        });
+    </script>
 </body>
 </html>

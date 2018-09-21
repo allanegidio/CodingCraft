@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Filters\LayoutChooserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,11 +210,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Estampa.cs" />
+    <Compile Include="Models\Layout.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Gola.cs" />
+    <Compile Include="ViewModels\LayoutViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Tamanho.cs" />
@@ -605,64 +608,18 @@
     <Content Include="Scripts\bootstrap\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutZurb.cshtml" />
     <Content Include="Views\Shared\_LayoutInk.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\Criar.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\Editar.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\Excluir.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\Detalhes.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\Indice.cshtml" />
-    <Content Include="Views\SiteZurb\Estampas\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\Criar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\Editar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\Excluir.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\Detalhes.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\Indice.cshtml" />
-    <Content Include="Views\SiteBootstrap\Estampas\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\Criar.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\Editar.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\Excluir.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\Detalhes.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\Indice.cshtml" />
-    <Content Include="Views\SiteInk\Estampas\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\Criar.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\Editar.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\Excluir.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\Detalhes.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\Indice.cshtml" />
-    <Content Include="Views\SiteZurb\Categorias\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\Criar.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\Editar.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\Excluir.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\Detalhes.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\Indice.cshtml" />
-    <Content Include="Views\SiteInk\Categorias\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\Criar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\Editar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\Excluir.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\Detalhes.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\Indice.cshtml" />
-    <Content Include="Views\SiteBootstrap\Categorias\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\Criar.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\Editar.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\Excluir.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\Indice.cshtml" />
-    <Content Include="Views\SiteZurb\Produtos\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\Criar.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\Editar.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\Excluir.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\Indice.cshtml" />
-    <Content Include="Views\SiteInk\Produtos\_CriarOuEditar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\Criar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\Editar.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\Excluir.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\Indice.cshtml" />
-    <Content Include="Views\SiteBootstrap\Produtos\_CriarOuEditar.cshtml" />
+    <Content Include="Views\Estampas\Criar.cshtml" />
+    <Content Include="Views\Estampas\Editar.cshtml" />
+    <Content Include="Views\Estampas\Excluir.cshtml" />
+    <Content Include="Views\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\Estampas\Indice.cshtml" />
+    <Content Include="Views\Estampas\_CriarOuEditar.cshtml" />
     <Content Include="Views\Home\Indice.cshtml" />
+    <Content Include="Views\Shared\_LayoutHandler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -23,7 +23,7 @@ if ($ModelType) {
 }
 
 # Decide where to put the output
-$outputFolderName = Join-Path Views/SiteBootstrap $Controller
+$outputFolderName = Join-Path Views/LayoutBootstrap $Controller
 if ($Area) {
 	# We don't create areas here, so just ensure that if you specify one, it already exists
 	$areaPath = Join-Path Areas $Area

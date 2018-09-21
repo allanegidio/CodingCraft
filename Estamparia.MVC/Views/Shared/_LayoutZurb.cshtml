@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Estamparia.MVC.ViewModels
+
+<!DOCTYPE html>
 
 <html class="no-js" lang="en">
 <head>
@@ -22,6 +24,7 @@
                 <li>@Html.ActionLink("Produtos", "Indice", "Produtos")</li>
             </ul>
         </div>
+        @Html.Partial("_LayoutHandler", new LayoutViewModel())
     </div>
     <br />
     <div class="grid-container">
@@ -32,6 +35,15 @@
     @RenderSection("scripts", required: false)
     <script>
         $(document).foundation();
+
+        $("#LayoutName").change(function (e) {
+            var layouts = document.getElementById("LayoutName");
+            var currentLayout = layouts.selectedIndex;
+            var layoutName = layouts.options[currentLayout].text;
+
+            document.cookie = `LayoutName = ${layoutName}`;
+            window.location.reload();
+        });
     </script>
 </body>
 </html>

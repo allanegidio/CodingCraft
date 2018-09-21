@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Estamparia.MVC.ViewModels
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,9 +26,8 @@
                     <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
 
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LayoutHandler", new LayoutViewModel())
             </div>
-
         </div>
     </div>
     <div class="container body-content">
@@ -40,5 +41,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bootstrap/js")
     @RenderSection("scripts", required: false)
+    <script>
+        $("#LayoutName").change(function (e) {
+            var layouts = document.getElementById("LayoutName");
+            var currentLayout = layouts.selectedIndex;
+            var layoutName = layouts.options[currentLayout].text;
+
+            document.cookie = `LayoutName = ${layoutName}`;
+            window.location.reload();
+        });
+    </script>
 </body>
 </html>

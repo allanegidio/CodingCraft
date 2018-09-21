@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Threading.Tasks;
-using System.Net;
 using Estamparia.MVC.Models;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Estamparia.MVC.Controllers
-{   
+{
     public class EstampasController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
