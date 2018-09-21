@@ -47,9 +47,17 @@
             var currentLayout = layouts.selectedIndex;
             var layoutName = layouts.options[currentLayout].text;
 
+            localStorage.setItem('currentLayout', currentLayout);
+            
             document.cookie = `LayoutName = ${layoutName}`;
+            
             window.location.reload();
         });
+
+        $().ready(function () {
+            if (localStorage.getItem('currentLayout'))
+                $('#LayoutName').val(localStorage.currentLayout);
+        });        
     </script>
 </body>
 </html>
