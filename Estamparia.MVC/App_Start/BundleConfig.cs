@@ -53,6 +53,7 @@ namespace Estamparia.MVC
 
             // Bundle of App
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                    "~/Scripts/app/services/cookieService.js",
                     "~/Scripts/app/controllers/layoutController.js",
                     "~/Scripts/app/app.js"
                 ));

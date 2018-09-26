@@ -1,4 +1,4 @@
-﻿var LayoutController = function () {
+﻿var LayoutController = function (cookieService) {
 
     var init = function (container) {
         setCurrentLayout(container);
@@ -11,20 +11,18 @@
         var currentLayout = layouts.selectedIndex;
         var layoutName = layouts.options[currentLayout].text;
 
-        localStorage.setItem('currentLayout', currentLayout);
-
-        document.cookie = `LayoutName = ${layoutName}`;
+        cookieService.setCookie("LayoutName", layoutName);
+        cookieService.setCookie("CurrentLayout", currentLayout);
 
         window.location.reload();
     }
     
     var setCurrentLayout = function (container) {
-        if (localStorage.getItem('currentLayout'))
-            $(container).val(localStorage.currentLayout);
+        $(container).val(cookieService.getCookie('CurrentLayout'));
     }
 
     return {
         init: init
     }
 
-}();
+}(CookieService);

@@ -9,11 +9,14 @@ namespace Lojinha.MVC.Controllers
     {
         public ActionResult Indice()
         {
-            var cookie = new HttpCookie("LayoutName", Layout.Bootstrap.ToString());
+            HttpCookie cookieLayoutName = new HttpCookie("LayoutName", Layout.Bootstrap.ToString());
+            cookieLayoutName.Expires = DateTime.Now.AddDays(1);
 
-            cookie.Expires = DateTime.Now.AddDays(1);
+            HttpCookie cookieCurrentLayout = new HttpCookie("CurrentLayout", Layout.Bootstrap.ToString("D"));
+            cookieCurrentLayout.Expires = DateTime.Now.AddDays(1);
 
-            Response.Cookies.Add(cookie);
+            Response.Cookies.Add(cookieLayoutName);
+            Response.Cookies.Add(cookieCurrentLayout);
 
             return View();
         }
