@@ -40,24 +40,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bootstrap/js")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
     <script>
-        $("#LayoutName").change(function (e) {
-            var layouts = document.getElementById("LayoutName");
-            var currentLayout = layouts.selectedIndex;
-            var layoutName = layouts.options[currentLayout].text;
-
-            localStorage.setItem('currentLayout', currentLayout);
-            
-            document.cookie = `LayoutName = ${layoutName}`;
-            
-            window.location.reload();
+        $(document).ready(function () {
+            LayoutController.init("#LayoutName");            
         });
-
-        $().ready(function () {
-            if (localStorage.getItem('currentLayout'))
-                $('#LayoutName').val(localStorage.currentLayout);
-        });        
     </script>
 </body>
 </html>

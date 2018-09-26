@@ -318,6 +318,8 @@
     <Content Include="Content\zurb-foundation\css\foundation.css" />
     <Content Include="Content\zurb-foundation\css\foundation.min.css" />
     <Content Include="Content\zurb-foundation\site-foundation.css" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\layoutController.js" />
     <Content Include="Scripts\zurb-foundation\js\foundation.js" />
     <Content Include="Scripts\zurb-foundation\js\foundation.min.js" />
     <Content Include="Scripts\zurb-foundation\js\npm.js" />
