@@ -9,16 +9,26 @@ namespace Lojinha.MVC.Controllers
     {
         public ActionResult Indice()
         {
-            HttpCookie cookieLayoutName = new HttpCookie("LayoutName", Layout.Bootstrap.ToString());
-            cookieLayoutName.Expires = DateTime.Now.AddDays(1);
-
-            HttpCookie cookieCurrentLayout = new HttpCookie("CurrentLayout", Layout.Bootstrap.ToString("D"));
-            cookieCurrentLayout.Expires = DateTime.Now.AddDays(1);
-
-            Response.Cookies.Add(cookieLayoutName);
-            Response.Cookies.Add(cookieCurrentLayout);
+            Response.SetCookie(CreateLayoutNameCookie());
+            Response.SetCookie(CreateLayoutValueCookie());
 
             return View();
+        }
+
+        private HttpCookie CreateLayoutNameCookie()
+        {
+            HttpCookie cookieLayoutName = new HttpCookie("LayoutName");
+            cookieLayoutName.Value = Layout.Bootstrap.ToString();
+            cookieLayoutName.Expires = DateTime.Now.AddHours(1);
+            return cookieLayoutName;
+        }
+
+        private HttpCookie CreateLayoutValueCookie()
+        {
+            HttpCookie cookieLayoutName = new HttpCookie("CurrentLayout");
+            cookieLayoutName.Value = Layout.Bootstrap.ToString("D");
+            cookieLayoutName.Expires = DateTime.Now.AddHours(1);
+            return cookieLayoutName;
         }
     }
 }

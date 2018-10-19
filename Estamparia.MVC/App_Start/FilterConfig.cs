@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using Estamparia.MVC.Filters;
 using System.Web.Mvc;
 
 namespace Estamparia.MVC
@@ -8,6 +8,7 @@ namespace Estamparia.MVC
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new LayoutChooserAttribute());
         }
     }
 }

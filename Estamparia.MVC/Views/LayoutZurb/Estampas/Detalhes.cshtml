@@ -1,0 +1,31 @@
+@model Estamparia.MVC.Models.Estampa
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutZurb.cshtml";
+}
+
+<div class="grid-x grid-margin-y grid-padding-x">
+	<div class="cell">
+		<h1>Detalhes</h1>
+
+		<h4>Estampa</h4>
+		<hr />
+
+		<dl>
+			<dt>
+				@Html.DisplayNameFor(model => model.Nome)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Nome)
+			</dd>
+		</dl>
+	</div>
+
+	<div class="cell">
+		<p>
+			@Html.ActionLink("Editar", "Editar", null, new { id = Model.EstampaId, @class = "button primary" }) |
+			@Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "button secondary" })
+		</p>
+	</div>
+</div>

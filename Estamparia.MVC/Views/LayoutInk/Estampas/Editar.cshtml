@@ -1,0 +1,35 @@
+@model Estamparia.MVC.Models.Estampa
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutInk.cshtml";
+}
+
+
+@using (Html.BeginForm("Editar", "Estampas", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
+{
+	@Html.ValidationSummary(false)
+
+	<h1 class="fw-900">Editar</h1>
+
+	<div class="column-group vertical-gutters">
+		<div class="all-50 small-100 tiny-100">
+            <div class="column-group">
+					@Html.HiddenFor(model => model.EstampaId)
+				<fieldset>
+					<legend>Estampa</legend>
+					@Html.Partial("_CriarOuEditar", Model)
+				</fieldset>
+            </div>
+        </div>
+		<div class="all-100 small-100 tiny-100">
+            <div class="column-group vertical-padding">
+                <p>
+                    <input class="ink-button blue" type="submit" value="Salvar" /> |
+                    @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+                </p>
+            </div>
+        </div>
+	</div>
+}
+

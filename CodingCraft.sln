@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lojinha.MVC", "Lojinha.MVC\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estamparia.MVC", "Estamparia.MVC\Estamparia.MVC.csproj", "{B93D3BBF-8E15-4904-B80B-EC4D0305B98B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modulo 1", "Modulo 1", "{B81E0DD0-43BF-4714-B766-CBCE62857995}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modulo 2", "Modulo 2", "{6844AE5D-D755-423E-BDC3-E610E3325378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2BB5A88-4CC4-4246-A4C3-BAD3C53B7A5A} = {B81E0DD0-43BF-4714-B766-CBCE62857995}
+		{B93D3BBF-8E15-4904-B80B-EC4D0305B98B} = {6844AE5D-D755-423E-BDC3-E610E3325378}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {498CE550-8BF0-43D3-AAA4-A7591E64FBE6}

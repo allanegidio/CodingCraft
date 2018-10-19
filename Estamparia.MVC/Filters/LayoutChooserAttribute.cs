@@ -29,5 +29,10 @@ namespace Estamparia.MVC.Filters
                     break;
             }
         }
+
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            base.OnResultExecuting(filterContext);
+        }
     }
 }

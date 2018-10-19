@@ -619,10 +619,27 @@
     <Content Include="Views\Estampas\_CriarOuEditar.cshtml" />
     <Content Include="Views\Home\Indice.cshtml" />
     <Content Include="Views\Shared\_LayoutHandler.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\Criar.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\Editar.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\Excluir.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\Indice.cshtml" />
+    <Content Include="Views\LayoutZurb\Estampas\_CriarOuEditar.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\Criar.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\Editar.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\Excluir.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\Indice.cshtml" />
+    <Content Include="Views\LayoutInk\Estampas\_CriarOuEditar.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\Criar.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\Editar.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\Excluir.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\Detalhes.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\Indice.cshtml" />
+    <Content Include="Views\LayoutBootstrap\Estampas\_CriarOuEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
