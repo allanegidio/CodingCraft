@@ -9,9 +9,11 @@ namespace Lojinha.MVC.Controllers
     {
         public ActionResult Indice()
         {
+            if (Request.Cookies["LayoutName"] != null)
+                return View();
+
             Response.SetCookie(CreateLayoutNameCookie());
             Response.SetCookie(CreateLayoutValueCookie());
-
 
             return View();
         }

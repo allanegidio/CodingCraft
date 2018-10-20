@@ -1,0 +1,87 @@
+@model IEnumerable<Estamparia.MVC.Models.Produto>
+
+@{
+    ViewBag.Title = "Indice";
+}
+
+<div class="grid-x grid-margin-x grid-padding-x">
+    <div class="cell">
+        <h1>Indice</h1>
+
+        <p>
+            @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "button primary" })
+        </p>
+	</div>
+	<div class="cell">
+        <table class="hover">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.Nome)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Cor)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Preco)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Estoque)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Tamanho)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Gola)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Categoria)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Estampa)
+					</th>
+					<th>
+						Ações
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model) 
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(model => item.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Cor)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Preco)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Estoque)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Tamanho.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Gola.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Categoria.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Estampa.Nome)
+						</td>
+						<td>
+							@Html.ActionLink("Editar", "Editar", new { id = item.ProdutoId }) |
+							@Html.ActionLink("Detalhes", "Detalhes", new { id= item.ProdutoId }) |
+							@Html.ActionLink("Excluir", "Excluir", new { id = item.ProdutoId })
+						</td>
+					</tr>
+				}
+			</tbody>
+        </table>
+    </div>
+</div>
+

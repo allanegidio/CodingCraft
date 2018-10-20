@@ -1,4 +1,4 @@
-@model Estamparia.MVC.Models.Estampa
+@model Estamparia.MVC.Models.Categoria
 
 @{
     ViewBag.Title = "Criar";
@@ -10,19 +10,16 @@
     switch (layoutValue)
     {
         case "Bootstrap":
-            Html.RenderPartial("Bootstrap/_CriarBootstrap", Model);
+            Html.RenderPartial("Bootstrap/_Criar", Model);
             break;
 
         case "Ink":
-            Html.RenderPartial("Ink/_CriarInk", Model);
+            Html.RenderPartial("Ink/_Criar", Model);
             break;
 
         case "Zurb":
-            Html.RenderPartial("Zurb/_CriarZurb", Model);
+            Html.RenderPartial("Zurb/_Criar", Model);
             break;
 
     }
 }
-
-
-

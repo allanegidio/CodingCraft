@@ -1,0 +1,72 @@
+@model Estamparia.MVC.Models.Produto
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="control-group required">
+	@Html.LabelFor(model => model.Nome)
+	<div class="control">
+		@Html.TextBoxFor(model => model.Nome, new { data_rules = "required" })
+	</div>
+</div>
+
+<div class="control-group required">
+	@Html.LabelFor(model => model.Cor)
+	<div class="control">
+		@Html.TextBoxFor(model => model.Cor, new { data_rules = "required" })
+	</div>
+</div>
+
+<div class="control-group required">
+	@Html.LabelFor(model => model.Preco)
+	<div class="control">
+		@Html.TextBoxFor(model => model.Preco, new { data_rules = "required" })
+	</div>
+</div>
+
+<div class="control-group required">
+	@Html.LabelFor(model => model.Estoque)
+	<div class="control">
+		@Html.TextBoxFor(model => model.Estoque, new { data_rules = "required" })
+	</div>
+</div>
+
+<div class="control-group required">
+    @Html.LabelFor(model => model.Categoria)
+	<div class="control">
+		@Html.DropDownListFor(model => model.CategoriaId, ((IEnumerable<Estamparia.MVC.Models.Categoria>)ViewBag.Categorias).Select(option => new SelectListItem {
+			Text = (option == null ? "None" : option.Nome), 
+			Value = option.CategoriaId.ToString(),
+			Selected = (Model != null) && (option.CategoriaId == Model.CategoriaId)
+		}), "Escolha...", new { data_rules = "required" })
+	</div>
+</div>
+<div class="control-group required">
+    @Html.LabelFor(model => model.Tamanho)
+	<div class="control">
+		@Html.DropDownListFor(model => model.TamanhoId, ((IEnumerable<Estamparia.MVC.Models.Tamanho>)ViewBag.Tamanhos).Select(option => new SelectListItem {
+			Text = (option == null ? "None" : option.Nome), 
+			Value = option.TamanhoId.ToString(),
+			Selected = (Model != null) && (option.TamanhoId == Model.TamanhoId)
+		}), "Escolha...", new { data_rules = "required" })
+	</div>
+</div>
+<div class="control-group required">
+    @Html.LabelFor(model => model.Gola)
+	<div class="control">
+		@Html.DropDownListFor(model => model.GolaId, ((IEnumerable<Estamparia.MVC.Models.Gola>)ViewBag.Golas).Select(option => new SelectListItem {
+			Text = (option == null ? "None" : option.Nome), 
+			Value = option.GolaId.ToString(),
+			Selected = (Model != null) && (option.GolaId == Model.GolaId)
+		}), "Escolha...", new { data_rules = "required" })
+	</div>
+</div>
+<div class="control-group required">
+    @Html.LabelFor(model => model.Estampa)
+	<div class="control">
+		@Html.DropDownListFor(model => model.EstampaId, ((IEnumerable<Estamparia.MVC.Models.Estampa>)ViewBag.Estampas).Select(option => new SelectListItem {
+			Text = (option == null ? "None" : option.Nome), 
+			Value = option.EstampaId.ToString(),
+			Selected = (Model != null) && (option.EstampaId == Model.EstampaId)
+		}), "Escolha...", new { data_rules = "required" })
+	</div>
+</div>

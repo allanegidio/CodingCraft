@@ -1,4 +1,4 @@
-@model Estamparia.MVC.Models.Estampa
+@model Estamparia.MVC.Models.Produto
 
 @{
     ViewBag.Title = "Detalhes";
@@ -6,22 +6,21 @@
 
 @{
     string layoutValue = Request.Cookies.Get("LayoutName").Value;
+    string path = string.Format("{0}/_{1}", layoutValue, ViewBag.Title);
 
     switch (layoutValue)
     {
         case "Bootstrap":
-            Html.RenderPartial("Bootstrap/_DetalhesBootstrap", Model);
+            Html.RenderPartial(path, Model);
             break;
 
         case "Ink":
-            Html.RenderPartial("Ink/_DetalhesInk", Model);
+            Html.RenderPartial(path, Model);
             break;
 
         case "Zurb":
-            Html.RenderPartial("Zurb/_DetalhesZurb", Model);
+            Html.RenderPartial(path, Model);
             break;
 
     }
 }
-
-

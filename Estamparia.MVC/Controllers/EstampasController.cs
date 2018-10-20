@@ -21,7 +21,7 @@ namespace Estamparia.MVC.Controllers
         //
         // GET: /Estampas/Detalhes/{id}
 
-        public async Task<ActionResult> Detalhes(int id)
+        public async Task<ActionResult> Detalhes(int? id)
         {
 			 if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -62,7 +62,7 @@ namespace Estamparia.MVC.Controllers
         //
         // GET: /Estampas/Editar/{id}
  
-        public async Task<ActionResult> Editar(int id)
+        public async Task<ActionResult> Editar(int? id)
         {
 			if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,7 +93,7 @@ namespace Estamparia.MVC.Controllers
 
         //
         // GET: /Estampas/Excluir/{id}
-        public async Task<ActionResult> Excluir(int id)
+        public async Task<ActionResult> Excluir(int? id)
         {
 			if (id == null)
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

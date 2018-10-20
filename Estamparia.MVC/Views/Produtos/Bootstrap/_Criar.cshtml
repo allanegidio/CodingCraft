@@ -1,0 +1,26 @@
+@model Estamparia.MVC.Models.Produto
+
+@{
+    ViewBag.Title = "Criar";
+}
+
+<h1 class="display-4 mt-3">Criar</h1>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div>
+        <h4>Produto</h4>
+
+		@Html.Partial("Bootstrap/_CriarOuEditar", Model)
+
+        <p>
+            <input class="btn btn-primary active" type="submit" value="Criar" />
+        </p>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Listagem", "Indice")
+</div>
+
+

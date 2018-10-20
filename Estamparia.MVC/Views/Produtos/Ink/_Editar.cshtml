@@ -1,0 +1,34 @@
+@model Estamparia.MVC.Models.Produto
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+@using (Html.BeginForm("Editar", "Produtos", FormMethod.Post, new { @class= "ink-form ink-formvalidator", data_lang = "pt_PT" })) 
+{
+	@Html.ValidationSummary(false)
+
+	<h1 class="fw-900">Editar</h1>
+
+	<div class="column-group vertical-gutters">
+		<div class="all-50 small-100 tiny-100">
+            <div class="column-group">
+					@Html.HiddenFor(model => model.ProdutoId)
+				<fieldset>
+					<legend>Produto</legend>
+					@Html.Partial("Ink/_CriarOuEditar", Model)
+				</fieldset>
+            </div>
+        </div>
+		<div class="all-100 small-100 tiny-100">
+            <div class="column-group vertical-padding">
+                <p>
+                    <input class="ink-button blue" type="submit" value="Salvar" /> |
+                    @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "ink-button green" })
+                </p>
+            </div>
+        </div>
+	</div>
+}
+

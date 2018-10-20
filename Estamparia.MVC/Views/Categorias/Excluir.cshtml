@@ -1,9 +1,8 @@
-@model Estamparia.MVC.Models.Estampa
+@model Estamparia.MVC.Models.Categoria
 
 @{
     ViewBag.Title = "Excluir";
 }
-
 
 @{
     string layoutValue = Request.Cookies.Get("LayoutName").Value;
@@ -11,15 +10,15 @@
     switch (layoutValue)
     {
         case "Bootstrap":
-            Html.RenderPartial("Bootstrap/_ExcluirBootstrap", Model);
+            Html.RenderPartial("Bootstrap/_Excluir", Model);
             break;
 
         case "Ink":
-            Html.RenderPartial("Ink/_ExcluirInk", Model);
+            Html.RenderPartial("Ink/_Excluir", Model);
             break;
 
         case "Zurb":
-            Html.RenderPartial("Zurb/_ExcluirZurb", Model);
+            Html.RenderPartial("Zurb/_Excluir", Model);
             break;
 
     }

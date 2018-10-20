@@ -1,4 +1,4 @@
-@model Estamparia.MVC.Models.Estampa
+@model Estamparia.MVC.Models.Categoria
 
 @{
     ViewBag.Title = "Detalhes";
@@ -10,18 +10,16 @@
     switch (layoutValue)
     {
         case "Bootstrap":
-            Html.RenderPartial("Bootstrap/_DetalhesBootstrap", Model);
+            Html.RenderPartial("Bootstrap/_Detalhes", Model);
             break;
 
         case "Ink":
-            Html.RenderPartial("Ink/_DetalhesInk", Model);
+            Html.RenderPartial("Ink/_Detalhes", Model);
             break;
 
         case "Zurb":
-            Html.RenderPartial("Zurb/_DetalhesZurb", Model);
+            Html.RenderPartial("Zurb/_Detalhes", Model);
             break;
 
     }
 }
-
-

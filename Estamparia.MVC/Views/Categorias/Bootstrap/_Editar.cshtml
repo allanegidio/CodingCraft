@@ -1,0 +1,25 @@
+@model Estamparia.MVC.Models.Categoria
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h1 class="display-4 mt-3">Editar</h1>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div>
+        <h4>Categoria</h4>
+
+        @Html.HiddenFor(model => model.CategoriaId)
+		@Html.Partial("_CriarOuEditar", Model)
+
+        <p>
+            <input class="btn btn-primary active" type="submit" value="Salvar" />
+        </p>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Listagem", "Indice")
+</div>

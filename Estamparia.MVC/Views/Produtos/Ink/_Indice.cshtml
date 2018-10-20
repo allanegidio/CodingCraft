@@ -1,0 +1,86 @@
+@model IEnumerable<Estamparia.MVC.Models.Produto>
+
+@{
+    ViewBag.Title = "Indice";
+}
+
+<div class="column-group">
+    <div class="all-100">
+        <h1 class="fw-900">Indice</h1>
+
+        <p>
+            @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "ink-button blue" })
+        </p>
+
+        <table class="ink-table">
+			<thead>
+				<tr>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Nome)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Cor)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Preco)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Estoque)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Tamanho)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Gola)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Categoria)
+					</th>
+					<th class="align-left">
+						@Html.DisplayNameFor(model => model.Estampa)
+					</th>
+					<th class="align-left">
+						Ações
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model) 
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(model => item.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Cor)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Preco)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Estoque)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Tamanho.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Gola.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Categoria.Nome)
+						</td>
+						<td>
+							@Html.DisplayFor(model => item.Estampa.Nome)
+						</td>
+						<td>
+							@Html.ActionLink("Editar", "Editar", new { id = item.ProdutoId }) |
+							@Html.ActionLink("Detalhes", "Detalhes", new { id= item.ProdutoId }) |
+							@Html.ActionLink("Excluir", "Excluir", new { id = item.ProdutoId })
+						</td>
+					</tr>
+				}
+			</tbody>
+        </table>
+    </div>
+</div>
+

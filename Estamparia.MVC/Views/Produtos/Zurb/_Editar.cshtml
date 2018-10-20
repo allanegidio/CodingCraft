@@ -1,0 +1,32 @@
+@model Estamparia.MVC.Models.Produto
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+@using (Html.BeginForm("Editar", "Produtos", FormMethod.Post, new { novalidate = "", data_abide = "" })) 
+{
+	@Html.ValidationSummary(false)
+
+	<div class="grid-x grid-padding-x">
+
+		<div class="cell">
+			<h1>Editar</h1>
+			<h4>Produto</h4>
+			<hr />
+		</div>
+        <div class="cell large-6 medium-8 small-10">
+			@Html.HiddenFor(model => model.ProdutoId)
+			@Html.Partial("Zurb/_CriarOuEditar", Model)
+        </div>
+		<div class="cell">
+            <br />
+            <p>
+                <input class="button primary" type="submit" value="Salvar" /> |
+                @Html.ActionLink("Voltar para Listagem", "Indice", null, new { @class = "button secondary" })
+            </p>
+        </div>
+	</div>
+}
+
