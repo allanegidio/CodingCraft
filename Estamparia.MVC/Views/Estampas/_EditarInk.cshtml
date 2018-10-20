@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Editar";
-    Layout = "~/Views/Shared/_LayoutInk.cshtml";
 }
 
 
@@ -18,7 +17,7 @@
 					@Html.HiddenFor(model => model.EstampaId)
 				<fieldset>
 					<legend>Estampa</legend>
-					@Html.Partial("_CriarOuEditar", Model)
+					@Html.Partial("_CriarOuEditarInk", Model)
 				</fieldset>
             </div>
         </div>

@@ -4,34 +4,23 @@
     ViewBag.Title = "Indice";
 }
 
-<h2 class="display-4 mt-3">Indice</h2>
 
-<p>
-    @Html.ActionLink("Criar Novo", "Criar", null, new { @class = "btn btn-primary active"})
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Nome)
-			</th>
-			<th>Ações</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model) {
-		<tr>
-			<td>
-				@Html.DisplayFor(model => item.Nome)
-			</td>
-			<td>
-				@Html.ActionLink("Editar", "Editar", new { id = item.EstampaId }) |
-				@Html.ActionLink("Detalhes", "Detalhes", new { id= item.EstampaId }) |
-				@Html.ActionLink("Excluir", "Excluir", new { id = item.EstampaId })
-			</td>
-		</tr>
-		}
-	</tbody>
-</table>
+@{
+    string layoutValue = Request.Cookies.Get("LayoutName").Value;
 
+    switch (layoutValue)
+    {
+        case "Bootstrap":
+            Html.RenderPartial("_IndiceBootstrap", Model);
+            break;
 
+        case "Ink":
+            Html.RenderPartial("_IndiceInk", Model);
+            break;
+
+        case "Zurb":
+            Html.RenderPartial("_IndiceZurb", Model);
+            break;
+
+    }
+}

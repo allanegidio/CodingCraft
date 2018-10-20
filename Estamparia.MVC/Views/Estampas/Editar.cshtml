@@ -2,25 +2,24 @@
 
 @{
     ViewBag.Title = "Editar";
-    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
 }
 
-<h1 class="display-4 mt-3">Editar</h1>
+@{
+    string layoutValue = Request.Cookies.Get("LayoutName").Value;
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-    <div>
-        <h4>Estampa</h4>
+    switch (layoutValue)
+    {
+        case "Bootstrap":
+            Html.RenderPartial("_EditarBootstrap", Model);
+            break;
 
-        @Html.HiddenFor(model => model.EstampaId)
-		@Html.Partial("_CriarOuEditar", Model)
+        case "Ink":
+            Html.RenderPartial("_EditarInk", Model);
+            break;
 
-        <p>
-            <input class="btn btn-primary active" type="submit" value="Salvar" />
-        </p>
-    </div>
+        case "Zurb":
+            Html.RenderPartial("_EditarZurb", Model);
+            break;
+
+    }
 }
-
-<div>
-    @Html.ActionLink("Voltar para Listagem", "Indice")
-</div>

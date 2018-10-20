@@ -5,23 +5,25 @@
     Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
 }
 
-<h1 class="display-4 mt-3">Criar</h1>
+@{
+    string layoutValue = Request.Cookies.Get("LayoutName").Value;
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-    <div>
-        <h4>Estampa</h4>
+    switch (layoutValue)
+    {
+        case "Bootstrap":
+            Html.RenderPartial("_CriarBootstrap", Model);
+            break;
 
-		@Html.Partial("_CriarOuEditar", Model)
+        case "Ink":
+            Html.RenderPartial("_CriarInk", Model);
+            break;
 
-        <p>
-            <input class="btn btn-primary active" type="submit" value="Criar" />
-        </p>
-    </div>
+        case "Zurb":
+            Html.RenderPartial("_CriarZurb", Model);
+            break;
+
+    }
 }
 
-<div>
-    @Html.ActionLink("Voltar para Listagem", "Indice")
-</div>
 
 

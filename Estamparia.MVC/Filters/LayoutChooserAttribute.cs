@@ -14,6 +14,8 @@ namespace Estamparia.MVC.Filters
 
             var result = filterContext.Result as ViewResult;
 
+            if (result == null) return;
+
             switch (layoutName)
             {
                 case "Bootstrap":
@@ -28,11 +30,6 @@ namespace Estamparia.MVC.Filters
                     result.MasterName = layoutPath;
                     break;
             }
-        }
-
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
-        {
-            base.OnResultExecuting(filterContext);
         }
     }
 }

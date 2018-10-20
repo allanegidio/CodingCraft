@@ -12,6 +12,7 @@ namespace Lojinha.MVC.Controllers
             Response.SetCookie(CreateLayoutNameCookie());
             Response.SetCookie(CreateLayoutValueCookie());
 
+
             return View();
         }
 
