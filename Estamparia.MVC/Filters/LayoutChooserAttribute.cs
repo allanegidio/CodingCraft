@@ -1,10 +1,24 @@
-﻿using System.Web;
+﻿using Estamparia.MVC.Models;
+using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Estamparia.MVC.Filters
 {
     public class LayoutChooserAttribute : ActionFilterAttribute
     {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+           base.OnActionExecuting(filterContext);
+
+            if (filterContext.HttpContext.Request.Cookies["LayoutName"] != null &&
+                filterContext.HttpContext.Request.Cookies["CurrentLayout"] != null) return;
+
+            filterContext.HttpContext.Response.SetCookie(CreateLayoutNameCookie());
+            filterContext.HttpContext.Response.SetCookie(CreateLayoutValueCookie());
+        }
+
+
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
@@ -32,5 +46,22 @@ namespace Estamparia.MVC.Filters
                     break;
             }
         }
+
+        private HttpCookie CreateLayoutNameCookie()
+        {
+            HttpCookie cookieLayoutName = new HttpCookie("LayoutName");
+            cookieLayoutName.Value = Layout.Bootstrap.ToString();
+            cookieLayoutName.Expires = DateTime.Now.AddMonths(1);
+            return cookieLayoutName;
+        }
+
+        private HttpCookie CreateLayoutValueCookie()
+        {
+            HttpCookie cookieLayoutName = new HttpCookie("CurrentLayout");
+            cookieLayoutName.Value = Layout.Bootstrap.ToString("D");
+            cookieLayoutName.Expires = DateTime.Now.AddMonths(1);
+            return cookieLayoutName;
+        }
+
     }
 }
