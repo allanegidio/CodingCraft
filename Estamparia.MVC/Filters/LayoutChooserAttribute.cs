@@ -11,11 +11,9 @@ namespace Estamparia.MVC.Filters
         {
            base.OnActionExecuting(filterContext);
 
-            if (filterContext.HttpContext.Request.Cookies["LayoutName"] != null &&
-                filterContext.HttpContext.Request.Cookies["CurrentLayout"] != null) return;
+            if (filterContext.HttpContext.Request.Cookies["LayoutName"] != null) return;
 
             filterContext.HttpContext.Response.SetCookie(CreateLayoutNameCookie());
-            filterContext.HttpContext.Response.SetCookie(CreateLayoutValueCookie());
         }
 
 
@@ -54,14 +52,5 @@ namespace Estamparia.MVC.Filters
             cookieLayoutName.Expires = DateTime.Now.AddMonths(1);
             return cookieLayoutName;
         }
-
-        private HttpCookie CreateLayoutValueCookie()
-        {
-            HttpCookie cookieLayoutName = new HttpCookie("CurrentLayout");
-            cookieLayoutName.Value = Layout.Bootstrap.ToString("D");
-            cookieLayoutName.Expires = DateTime.Now.AddMonths(1);
-            return cookieLayoutName;
-        }
-
     }
 }

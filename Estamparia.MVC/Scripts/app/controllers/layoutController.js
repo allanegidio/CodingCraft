@@ -8,17 +8,20 @@
 
     var layoutHandler = function (e) {
         var layouts = e.target;
-        var currentLayout = layouts.selectedIndex;
+        var currentLayout = e.target.selectedIndex;
         var layoutName = layouts.options[currentLayout].text;
 
         cookieService.setCookie("LayoutName", layoutName);
-        cookieService.setCookie("CurrentLayout", currentLayout);
 
         window.location.reload();
     }
     
     var setCurrentLayout = function (container) {
-        $(container).val(cookieService.getCookie('CurrentLayout'));
+        $("#LayoutName option").each(function () {
+            if ($(this).text() == cookieService.getCookie('LayoutName')) {
+                $(this).prop('selected', 'true'); 
+            }
+        });
     }
 
     return {
