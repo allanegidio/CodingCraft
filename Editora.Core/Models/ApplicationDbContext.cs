@@ -5,7 +5,7 @@ namespace Editora.Core.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("CodingCraft_Editora", throwIfV1Schema: false)
         {
         }
 
