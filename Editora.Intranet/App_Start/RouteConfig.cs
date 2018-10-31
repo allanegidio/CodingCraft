@@ -13,10 +13,8 @@ namespace Editora.Intranet
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "Editora.Intranet.Controllers" }
-            ).DataTokens["UseNamespaceFallback"] = true;
-
-
+                namespaces: new string[] { "Editora.Core.Controllers" }
+            );
         }
     }
 }

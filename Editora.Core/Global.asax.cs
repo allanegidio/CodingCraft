@@ -12,8 +12,7 @@ namespace Editora.Core
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            ControllerBuilder.Current.DefaultNamespaces.Add("Editora.Core.Controllers");
+            
         }
     }
 }

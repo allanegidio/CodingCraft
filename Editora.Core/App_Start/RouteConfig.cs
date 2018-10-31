@@ -14,7 +14,7 @@ namespace Editora.Core
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "Editora.Core.Controllers" }
-            ).DataTokens["UseNamespaceFallback"] = false;
+            );
         }
     }
 }
