@@ -190,6 +190,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +212,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Obras\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Obras\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Obras\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Obras\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Obras\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Autores\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Autores\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Autores\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Autores\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Autores\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
